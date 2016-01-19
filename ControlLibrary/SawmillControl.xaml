@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="ControlLibrary.SawmillControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controlLibrary="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" x:Name="Root"
+             d:DesignHeight="300" d:DesignWidth="600" DataContext="{Binding ElementName=Root}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="controlLibrary:Lamp">
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Canvas Height="600" Width="1200">
+            <Rectangle x:Name="BigBox"
+                Canvas.Top="100" Canvas.Left="300"
+                Height="500" Width="600" Style="{StaticResource WoodBoxStyle}"/>
+            <Ellipse x:Name="Saw"
+                Canvas.Top="0" Canvas.Left="500"
+                Height="200" Width="200" Style="{StaticResource SawStyle}"/>
+            <Polygon x:Name="Box"
+                Canvas.Top="250" Canvas.Left="0"
+                Height="50" Width="350" Style="{StaticResource MetallBoxStyle}">
+                <Polygon.Points>
+                    <Point X="0" Y="0"/>
+                    <Point X="5" Y="0"/>
+                    <Point X="15" Y="25"/>
+                    <Point X="335" Y="25"/>
+                    <Point X="345" Y="0"/>
+                    <Point X="350" Y="0"/>
+                    <Point X="350" Y="50"/>
+                    <Point X="0" Y="50"/>
+                </Polygon.Points>
+            </Polygon>
+            <Polygon x:Name="MoveLineBorder"
+                Canvas.Top="300" Canvas.Left="25"
+                Height="125" Width="1150" Fill="Black">
+                <Polygon.Points>
+                    <Point X="0" Y="0"/>
+                    <Point X="375" Y="0"/>
+                    <Point X="375" Y="100"/>
+                    <Point X="1150" Y="100"/>
+                    <Point X="1150" Y="125"/>
+                    <Point X="350" Y="125"/>
+                    <Point X="350" Y="25"/>
+                    <Point X="0" Y="25"/>
+                </Polygon.Points>
+            </Polygon>
+            <Polygon x:Name="MoveLine"
+                Canvas.Top="300" Canvas.Left="25"
+                Height="125" Width="1150" Style="{StaticResource RustPolygonStyle}">
+                <Polygon.Points>
+                    <Point X="3" Y="3"/>
+                    <Point X="372" Y="3"/>
+                    <Point X="372" Y="103"/>
+                    <Point X="1147" Y="103"/>
+                    <Point X="1147" Y="122"/>
+                    <Point X="353" Y="122"/>
+                    <Point X="353" Y="22"/>
+                    <Point X="3" Y="22"/>
+                </Polygon.Points>
+            </Polygon>
+            <Rectangle x:Name="FrontDoor"
+                       Canvas.Left="290" Canvas.Top="70"
+                       Height="150" Width="10" Style="{StaticResource MetallRectStyle}"/>
+            <Rectangle x:Name="BackDoor"
+                       Canvas.Left="900" Canvas.Top="200"
+                       Height="150" Width="10" Style="{StaticResource MetallRectStyle}"/>
+            <controlLibrary:Lamp x:Name="Input00" Value="{Binding Path=In00, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="270" Canvas.Left="0"/>
+            <controlLibrary:Lamp x:Name="Input01" Value="{Binding Path=In01, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="270" Canvas.Left="150"/>
+            <controlLibrary:Lamp x:Name="Input02" Value="{Binding Path=In02, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="270" Canvas.Left="200"/>
+            <controlLibrary:Lamp x:Name="Input03" Value="{Binding Path=In03, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="70" Canvas.Left="285"/>
+            <controlLibrary:Lamp x:Name="Input04" Value="{Binding Path=In04, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="250" Canvas.Left="285"/>
+            <controlLibrary:Lamp x:Name="Input05" Value="{Binding Path=In05, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="270" Canvas.Left="350"/>
+            <controlLibrary:Lamp x:Name="Input06" Value="{Binding Path=In06, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="270" Canvas.Left="380"/>
+            <controlLibrary:Lamp x:Name="Input07" Value="{Binding Path=In07, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="380" Canvas.Left="400"/>
+            <controlLibrary:Lamp x:Name="Input08" Value="{Binding Path=In08, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="150" Canvas.Left="740"/>
+            <controlLibrary:Lamp x:Name="Input09" Value="{Binding Path=In09, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="270" Canvas.Left="730"/>
+            <controlLibrary:Lamp x:Name="Input10" Value="{Binding Path=In10, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="380" Canvas.Left="750"/>
+            <controlLibrary:Lamp x:Name="Input11" Value="{Binding Path=In11, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="380" Canvas.Left="830"/>
+            <controlLibrary:Lamp x:Name="Input12" Value="{Binding Path=In12, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="200" Canvas.Left="895"/>
+            <controlLibrary:Lamp x:Name="Input13" Value="{Binding Path=In13, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="380" Canvas.Left="895"/>
+            <controlLibrary:Lamp x:Name="Input14" Value="{Binding Path=In14, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="380" Canvas.Left="1145"/>
+            <controlLibrary:EngineSimbol Canvas.Left="700" Canvas.Top="140" Height="100" Width="100" Fill="#FF401906"/>
+        </Canvas>
+    </Viewbox>
+</UserControl>

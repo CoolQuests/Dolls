@@ -1,0 +1,38 @@
+﻿<Image x:Class="ControlLibrary.EngineSimbol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="Root">
+    <Image.Resources>
+        <Pen x:Key="Border" DashCap="Flat" Brush="{Binding ElementName=Root, Path=BorderFill}"/>
+    </Image.Resources>
+    <Image.Source>
+        <DrawingImage>
+            <DrawingImage.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Pen="{StaticResource Border}" Brush="{Binding ElementName=Root, Path=Fill}"
+								Geometry="
+								     M 0,150
+								     A 150,150 0 0 0 300,150
+                                     A 150,150 0 0 0 0,150
+                                     L 20,150
+                                     A 130,130 0 0 1 280,150
+                                     A 130,130 0 0 1 20,150
+								     Z"/>
+                    <GeometryDrawing Pen="{StaticResource Border}" Brush="{Binding ElementName=Root, Path=Fill}"
+								Geometry="
+								     M 40,140
+								     A 120,120 0 0 1 150,140
+                                     A 120,120 0 0 0 260,140
+                                     L 260 160
+                                     A 120,120 0 0 1 150,160
+                                     A 120,120 0 0 0 40,160
+								     Z"/>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+    </Image.Source>
+
+</Image>

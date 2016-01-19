@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlLibrary", "ControlLibrary\ControlLibrary.csproj", "{26DA0145-A79F-4CAB-A1E2-D20A6F283043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestDolls", "QuestDolls\QuestDolls.csproj", "{77726E5F-475D-4B7D-8F96-97F98694862B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Drivers", "Drivers", "{BDECA47B-1A7A-45DA-9433-FA09D7137311}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscretInputDriver", "Drivers\DiscretInputDriver\DiscretInputDriver.csproj", "{49B0A700-16A7-41A1-96DF-8436ADB6352F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainLoop", "MineLoop\MainLoop.csproj", "{FA8F1885-A429-4F3A-93B7-CB3FCEF61072}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayDriver", "Drivers\RelayDriver\RelayDriver.csproj", "{B3CA18AA-14EF-4133-9CFC-728E5C5589AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26DA0145-A79F-4CAB-A1E2-D20A6F283043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26DA0145-A79F-4CAB-A1E2-D20A6F283043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26DA0145-A79F-4CAB-A1E2-D20A6F283043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26DA0145-A79F-4CAB-A1E2-D20A6F283043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77726E5F-475D-4B7D-8F96-97F98694862B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77726E5F-475D-4B7D-8F96-97F98694862B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77726E5F-475D-4B7D-8F96-97F98694862B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77726E5F-475D-4B7D-8F96-97F98694862B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B0A700-16A7-41A1-96DF-8436ADB6352F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B0A700-16A7-41A1-96DF-8436ADB6352F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B0A700-16A7-41A1-96DF-8436ADB6352F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B0A700-16A7-41A1-96DF-8436ADB6352F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA8F1885-A429-4F3A-93B7-CB3FCEF61072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA8F1885-A429-4F3A-93B7-CB3FCEF61072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA8F1885-A429-4F3A-93B7-CB3FCEF61072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA8F1885-A429-4F3A-93B7-CB3FCEF61072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CA18AA-14EF-4133-9CFC-728E5C5589AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CA18AA-14EF-4133-9CFC-728E5C5589AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CA18AA-14EF-4133-9CFC-728E5C5589AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CA18AA-14EF-4133-9CFC-728E5C5589AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49B0A700-16A7-41A1-96DF-8436ADB6352F} = {BDECA47B-1A7A-45DA-9433-FA09D7137311}
+		{B3CA18AA-14EF-4133-9CFC-728E5C5589AB} = {BDECA47B-1A7A-45DA-9433-FA09D7137311}
+	EndGlobalSection
+EndGlobal

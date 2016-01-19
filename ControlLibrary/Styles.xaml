@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="Rectangle" x:Key="DoorStyle">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <!--<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#FF361C07" Offset="0.0" />
+                    <GradientStop Color="Silver" Offset="0.1" />
+                    <GradientStop Color="#FF5B2727" Offset="0.9" />
+                    <GradientStop Color="#FF361C07" Offset="1.0" />
+                </LinearGradientBrush>-->
+                <ImageBrush ImageSource="Content/woodTexture.jpg" Stretch="UniformToFill"/>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <RotateTransform Angle="45" CenterX="5" CenterY="5"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding}" Value="True">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="45" CenterX="5" CenterY="5"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding}" Value="False">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="0"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Shape"  x:Key="HandTransformStyle">
+        
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <RotateTransform Angle="45" CenterX="0" CenterY="-150"></RotateTransform>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding}" Value="True">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="45" CenterX="0" CenterY="-150"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding}" Value="False">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="0" CenterX="0" CenterY="-150"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Polygon"  x:Key="PolygonHandStyle" BasedOn="{StaticResource HandTransformStyle}">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <SolidColorBrush Color="Silver"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Rectangle"  x:Key="RectangleHandStyle" BasedOn="{StaticResource HandTransformStyle}">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <SolidColorBrush Color="Silver"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <ImageBrush x:Key="SawBrush" ImageSource="Content/sawTexture.png"/>
+    
+    <Style TargetType="Ellipse" x:Key="SawStyle">
+        <Setter Property="Fill" Value="{StaticResource SawBrush}"/>
+    </Style>
+    
+    <ImageBrush x:Key="WoodBrush" ImageSource="Content/woodTexture.jpg"/>
+
+    <Style TargetType="Rectangle" x:Key="WoodBoxStyle">
+        <Setter Property="Fill" Value="{StaticResource WoodBrush}"/>
+    </Style>
+
+    <ImageBrush x:Key="DarkWoodBrush" ImageSource="Content/darkWoodTexture.jpg"/>
+
+    <Style TargetType="Shape" x:Key="DarkWoodBoxStyle">
+        <Setter Property="Fill" Value="{StaticResource DarkWoodBrush}"/>
+    </Style>
+
+    <ImageBrush x:Key="IronBrush" ImageSource="Content/IronTexture.jpg"/>
+
+    <Style TargetType="Shape" x:Key="MetallBoxStyle">
+        <Setter Property="Fill" Value="{StaticResource IronBrush}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding}" Value="0">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="45" CenterX="0" CenterY="-150"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding}" Value="False">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="0" CenterX="0" CenterY="-150"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Rectangle" x:Key="MetallRectStyle">
+        <Setter Property="Fill" Value="{StaticResource IronBrush}"/>
+    </Style>
+    
+    <ImageBrush x:Key="RustBrush" ImageSource="Content/rustTexture.jpg"/>
+
+    <Style TargetType="Polygon" x:Key="RustPolygonStyle">
+        <Setter Property="Fill" Value="{StaticResource RustBrush}"/>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0071)http://microsin.net/programming/pc/ftdi-devices-access-from-csharp.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru" lang="ru-ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <!--<base href="http://microsin.net/programming/pc/ftdi-devices-access-from-csharp.html">--><base href=".">
+  
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="FTDI, D2XX, DLL, BitBang">
+  
+  <meta name="author" content="microsin">
+  <meta name="description" content="Примеры работы с устройствами FTDI через библиотеку подпрограмм D2XX.">
+  
+  <title>Доступ к устройствам FTDI из C# | pc | programming</title>
+  <link href="http://microsin.net/component/option,com_jcomments/format,raw/object_group,com_content/object_id,1836/task,rss/" rel="alternate" type="application/rss+xml" title="Доступ к устройствам FTDI из C#">
+  <link rel="stylesheet" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/style.css" type="text/css">
+  <link rel="stylesheet" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/spoiler.css" type="text/css">
+  <link rel="stylesheet" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/acesearch.css" type="text/css">
+  <style type="text/css">
+    <!--
+
+    .sp-head-click a{font-size: 11px; font-style: normal; color: #000000 !important; }
+	.sp-head{border: 0px #ccc solid; font-weight: bold;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            -khtml-border-radius: 8px;
+            border-radius: 8px;
+            width: 85%;
+            background-color: #f0f0f0;
+            text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+            box-shadow: 0 0 5px rgba(0,0,0,0.6);
+            -moz-box-shadow: 0 0 5px rgba(0,0,0,0.6);
+	        -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.6);
+	        }
+	.sp-body{font-size: 11px; font-weight: normal; background: #FFFDDD; border: 1px #ccc solid; 
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+	width: 95%;
+	font-style: italic;
+	padding: 10px}	
+	
+    -->
+  </style>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/proofreader.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/xajax.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/jcomments-v2.1.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/ajax.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/mootools.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/caption.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/spoiler.js"></script>
+  <script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/autocompleter12.js"></script>
+  <script type="text/javascript">
+
+                        var pb_sp_conf = {
+                            revealtype: "click",
+                            mouseoverdelay: 200,
+                            collapseprev: 0,
+                            onemustopen: 0,
+                            animatedefault: 0,
+                            animatespeed: 400
+                        };
+  </script>
+  <script language="JavaScript" type="text/javascript"><!-- // --><![CDATA[
+				function pr_setup() {
+					xajaxRequestUri='http://microsin.net/index.php?option=com_proofreader&task=sendmistake&tmpl=component';
+					xajaxWaitCursor=true;
+					xajaxDefinedPost=1;
+					xajaxDebug=false;
+					xajaxStatusMessages=false;
+					xajaxDefinedGet=0;
+				}
+
+			var xajaxRequestUri='http://microsin.net/index.php?option=com_proofreader&task=sendmistake&tmpl=component';
+			var xajaxWaitCursor=true;
+			var xajaxDefinedPost=1;
+			var xajaxDebug=false;
+			var xajaxStatusMessages=false;
+			var xajaxDefinedGet=0;
+
+			function addEventPR(obj, evType, fn){ 
+				 if (obj.addEventListener){ 
+					obj.addEventListener(evType, fn, false); 
+					return true; 
+				} else if (obj.attachEvent){
+					var r = obj.attachEvent("on"+evType, fn); 
+					return r; 
+				} else { 
+					return false; 
+				} 
+			}
+
+		 var pr_alt = false;  var pr_shift = true;  var pr_ctrl = false; 
+				var PReader_cur_page = "http://microsin.net/index.php?option=com_content&Itemid=44&catid=24&id=1836&lang=ru&view=article";
+				addEventPR(window, 'load',  addDivWindow);
+				addEventPR(window, 'load',  keyPressInit);
+			// ]]></script>
+  <script type="text/javascript">
+/*<![CDATA[*/
+	var jax_live_site = 'http://microsin.net/index.php';
+	var jax_site_type = '1.5';
+/*]]>*/
+</script><script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/ajax_1.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/style(1).css">
+<link rel="stylesheet" type="text/css" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/comment_style.css">
+
+<script type="text/javascript">
+/*<![CDATA[*/
+var jc_option           = "";
+var jc_autoUpdate       = "0";
+var jc_update_period    = 300*1000;
+var jc_orderBy          = "1";
+var jc_livesite_busyImg = "http://microsin.net/components/com_jomcomment/busy.gif";
+var jc_username         = "";
+var jc_email            = "";
+var jc_commentForm;
+/*]]>*/
+</script>
+
+<link rel="stylesheet" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/system.css" type="text/css">
+<link rel="stylesheet" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/general.css" type="text/css">
+<link rel="stylesheet" href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/template_css.css" type="text/css">
+<!-- <link rel="shortcut"   href="/templates/microsin/images/favicon16x16-8b.gif" type="image/x-icon"/> -->
+<link rel="shortcut icon" href="http://microsin.net/templates/microsin/images/favicon16x16-8b.gif">
+<meta http-equiv="Content-Language" content="en"><style type="text/css" id="ya_share_style">.b-share-popup-wrap{z-index:1073741823;position:absolute;width:500px}.b-share-popup{position:absolute;z-index:1073741823;border:1px solid #888;background:#FFF;color:#000}.b-share-popup-wrap .b-share-popup_down{top:0}.b-share-popup-wrap .b-share-popup_up{bottom:0}.b-share-popup-wrap_state_hidden{position:absolute!important;top:-9999px!important;right:auto!important;bottom:auto!important;left:-9999px!important;visibility:hidden!important}.b-share-popup,x:nth-child(1){border:0;padding:1px!important}@media all and (resolution=0){.b-share-popup,x:nth-child(1),x:-o-prefocus{padding:0!important;border:1px solid #888}}.b-share-popup__i{display:-moz-inline-box;display:inline-block;padding:5px 0!important;overflow:hidden;vertical-align:top;white-space:nowrap;visibility:visible;background:#FFF;-webkit-box-shadow:0 2px 9px rgba(0,0,0,.6);-moz-box-shadow:0 2px 9px rgba(0,0,0,.6);box-shadow:0 2px 9px rgba(0,0,0,.6)}.b-share-popup__item{font:1em/1.25em Arial,sans-serif;display:block;padding:5px 15px!important;white-space:nowrap;background:#FFF}.b-share-popup__item,a.b-share-popup__item:link,a.b-share-popup__item:visited{text-decoration:none!important;border:0!important}a.b-share-popup__item{cursor:pointer}a.b-share-popup__item .b-share-popup__item__text{display:inline;text-decoration:underline;color:#1A3DC1}a.b-share-popup__item:hover{word-spacing:0}a.b-share-popup__item:hover .b-share-popup__item__text{color:red;cursor:pointer}.b-share-popup__icon{display:-moz-inline-box;display:inline-block;margin:-3px 0 0;padding:0 5px 0 0!important;vertical-align:middle}.b-share-popup__icon_input{width:21px;height:16px;margin-top:-6px;padding:0!important}.b-share-popup__icon__input{margin-right:0;margin-left:2px;vertical-align:top}.b-share-popup__spacer{display:block;padding-top:10px!important}.b-share-popup__header{font:86%/1em Verdana,sans-serif;display:block;padding:10px 15px 5px!important;color:#999}.b-share-popup__header_first{padding-top:5px!important}.b-share-popup__input{font:86%/1em Verdana,sans-serif;display:block;padding:5px 15px!important;color:#999;text-align:left}.b-share-popup__input__input{font:1em/1em Verdana,sans-serif;display:block;width:10px;margin:5px 0 0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;resize:none;text-align:left;direction:ltr}.b-share-popup_down .b-share-popup_with-link .b-share-popup__input_link{position:absolute;top:5px;right:0;left:0}.b-share-popup_up .b-share-popup_with-link .b-share-popup__input_link{position:absolute;right:0;bottom:5px;left:0}.b-share-popup_down .b-share-popup_with-link{padding-top:55px!important}.b-share-popup_up .b-share-popup_with-link{padding-bottom:55px!important}.b-share-popup_down .b-share-popup_expandable .b-share-popup__main{padding-bottom:25px!important}.b-share-popup_up .b-share-popup_expandable .b-share-popup__main{padding-top:25px!important}.b-share-popup_down .b-share-popup_yandexed{padding-bottom:10px!important}.b-share-popup_up .b-share-popup_yandexed{padding-top:10px!important}.b-share-popup__yandex{position:absolute;right:4px;bottom:2px;font:78.125%/1em Verdana,sans-serif;padding:3px!important;background:0 0}a.b-share-popup__yandex:link,a.b-share-popup__yandex:visited{color:#C6C5C5;text-decoration:none}a.b-share-popup__yandex:link:hover,a.b-share-popup__yandex:visited:hover{color:red;text-decoration:underline}.b-share-popup_up .b-share-popup__yandex{top:2px;bottom:auto}.b-share-popup_expandable .b-share-popup__yandex{right:auto;left:4px}.b-share-popup_to-right .b-share-popup_expandable .b-share-popup__yandex{right:4px;left:auto}.b-share-popup__expander .b-share-popup__item{position:absolute;bottom:5px;font:86%/1em Verdana,sans-serif;margin:10px 0 0;padding:5px 10px!important;cursor:pointer;color:#999;background:0 0}.b-share-popup_to-right,.b-share-popup_to-right .b-share-popup__expander{direction:rtl}.b-share-popup_to-right .b-share-popup__expander .b-share-popup__icon{padding:0 0 0 5px!important}.b-share-popup_up .b-share-popup__expander .b-share-popup__item{top:-5px;bottom:auto}.b-share-popup__expander .b-share-popup__item:hover .b-share-popup__item__text{text-decoration:underline}.b-share-popup__expander .b-ico_action_rarr,.b-share-popup_to-right .b-share-popup__expander .b-ico_action_larr,.b-share-popup_full .b-share-popup__expander .b-ico_action_larr,.b-share-popup_to-right .b-share-popup_full .b-share-popup__expander .b-ico_action_rarr,.b-share-popup__expander .b-share-popup__item__text_collapse,.b-share-popup_full .b-share-popup__item__text_expand{display:none}.b-share-popup_to-right .b-share-popup__expander .b-ico_action_rarr,.b-share-popup_full .b-share-popup__item__text_collapse,.b-share-popup_full .b-share-popup__expander .b-ico_action_rarr,.b-share-popup_to-right .b-share-popup_full .b-share-popup__expander .b-ico_action_larr{display:inline}.b-ico_action_rarr,.b-ico_action_larr{width:8px;height:7px;border:0}.b-share-popup__main,.b-share-popup__extra{direction:ltr;vertical-align:bottom;text-align:left}.b-share-popup_down .b-share-popup__main,.b-share-popup_down .b-share-popup__extra{vertical-align:top}.b-share-popup__main{display:-moz-inline-stack;display:inline-block}.b-share-popup__extra{display:none;margin:0 -10px 0 0}.b-share-popup_full .b-share-popup__extra{display:-moz-inline-stack;display:inline-block}.b-share-popup_to-right .b-share-popup__extra{margin:0 0 0 -10px}.b-share-popup__tail{position:absolute;width:21px;height:10px;margin:0 0 0 -11px}.b-share-popup_down .b-share-popup__tail{top:-10px;background:url("//yastatic.net/share/static/b-share-popup_down__tail.gif") 0 0 no-repeat}.b-share-popup_up .b-share-popup__tail{bottom:-10px;background:url("//yastatic.net/share/static/b-share-popup_up__tail.gif") 0 0 no-repeat}.b-share-popup_down .b-share-popup__tail,x:nth-child(1){top:-9px;background-image:url("//yastatic.net/share/static/b-share-popup_down__tail.png")}.b-share-popup_up .b-share-popup__tail,x:nth-child(1){bottom:-9px;background-image:url("//yastatic.net/share/static/b-share-popup_up__tail.png")}@media all and (resolution=0){.b-share-popup_down .b-share-popup__tail,x:nth-child(1),x:-o-prefocus{top:-10px;background-image:url("//yastatic.net/share/static/b-share-popup_down__tail.gif")}.b-share-popup_up .b-share-popup__tail,x:nth-child(1),x:-o-prefocus{bottom:-10px;background-image:url("//yastatic.net/share/static/b-share-popup_up__tail.gif")}}.b-share-popup .b-share-popup_show_form_mail,.b-share-popup .b-share-popup_show_form_html{padding:0!important}.b-share-popup .b-share-popup_show_form_mail .b-share-popup__main,.b-share-popup .b-share-popup_show_form_html .b-share-popup__main,.b-share-popup .b-share-popup_show_form .b-share-popup__main,.b-share-popup .b-share-popup_show_form_mail .b-share-popup__extra,.b-share-popup .b-share-popup_show_form_html .b-share-popup__extra,.b-share-popup .b-share-popup_show_form .b-share-popup__extra{height:15px;padding:0!important;overflow:hidden;visibility:hidden}.b-share-popup_show_form_mail .b-share-popup__expander,.b-share-popup_show_form_html .b-share-popup__expander,.b-share-popup_show_form .b-share-popup__expander,.b-share-popup_show_form_mail .b-share-popup__input_link,.b-share-popup_show_form_html .b-share-popup__input_link,.b-share-popup_show_form .b-share-popup__input_link{display:none}.b-share-popup__form{position:relative;display:none;overflow:hidden;padding:5px 0 0!important;margin:0 0 -15px;white-space:normal}.b-share-popup_show_form_mail .b-share-popup__form_mail,.b-share-popup_show_form_html .b-share-popup__form_html,.b-share-popup_show_form .b-share-popup__form{display:block}.b-share-popup__form__link{padding:5px!important;margin:0 0 5px 10px;text-decoration:underline;cursor:pointer;color:#1A3DC1}.b-share-popup__form__link,.b-share-popup__form__button{font:86%/1.4545em Verdana,sans-serif;float:left;display:inline}.b-share-popup__form__button{margin:5px 0 0 15px}.b-share-popup__form__close{font:86%/1.4545em Verdana,sans-serif;float:right;display:inline;padding:5px!important;margin:0 10px 5px 0;cursor:pointer;color:#999}a.b-share-popup__form__link:hover,a.b-share-popup__form__close:hover{text-decoration:underline;color:red}.b-share-popup_font_fixed .b-share-popup__item{font-size:12.8px}.b-share-popup_font_fixed .b-share-popup__header,.b-share-popup_font_fixed .b-share-popup__input,.b-share-popup_font_fixed .b-share-popup__expander .b-share-popup__item,.b-share-popup_font_fixed .b-share-popup__form__link,.b-share-popup_font_fixed .b-share-popup__form__button,.b-share-popup_font_fixed .b-share-popup__form__close{font-size:11px}.b-share-popup_font_fixed .b-share-popup__yandex{font-size:10px}.b-share-form-button{font:86%/17px Verdana,Arial,sans-serif;display:-moz-inline-box;display:inline-block;position:relative;height:19px;margin:0 3px;padding:0 4px;cursor:default;white-space:nowrap;text-decoration:none!important;color:#000!important;border:none;outline:none;background:url("//yastatic.net/share/static/b-share-form-button.png") 0 -20px repeat-x}.b-share-form-button:link:hover,.b-share-form-button:visited:hover{color:#000!important}.b-share-form-button__before,.b-share-form-button__after{position:absolute;width:3px;height:19px;background:url("//yastatic.net/share/static/b-share-form-button.png")}.b-share-form-button__before{margin-left:-7px}.b-share-form-button__after{margin-left:4px;background-position:-3px 0}.b-share-form-button::-moz-focus-inner{border:none}button.b-share-form-button .b-share-form-button__before,button.b-share-form-button .b-share-form-button__after{margin-top:-1px}@-moz-document url-prefix(){button.b-share-form-button .b-share-form-button__after{margin-top:-2px;margin-left:6px}button.b-share-form-button .b-share-form-button__before{margin-top:-2px;margin-left:-9px}}SPAN.b-share-form-button:hover,.b-share-form-button_state_hover{background-position:0 -60px}SPAN.b-share-form-button:hover .b-share-form-button__before,.b-share-form-button_state_hover .b-share-form-button__before{background-position:0 -40px}SPAN.b-share-form-button:hover .b-share-form-button__after,.b-share-form-button_state_hover .b-share-form-button__after{background-position:-3px -40px}.b-share-form-button_state_pressed,.b-share-form-button_state_pressed .b-share-form-button_share{background-position:0 -100px!important}.b-share-form-button_state_pressed .b-share-form-button__before{background-position:0 -80px!important}.b-share-form-button_state_pressed .b-share-form-button__after{background-position:-3px -80px!important}button.b-share-form-button_state_pressed{overflow:visible}.b-share-form-button_icons{position:relative;padding:0;background-position:0 -20px!important}.b-share-form-button_icons .b-share-form-button__before{left:0;margin-left:-3px;background-position:0 0!important}.b-share-form-button_icons .b-share-form-button__after{z-index:-1;margin-left:0;background-position:-3px 0!important}.b-share-form-button_icons .b-share__handle{padding:2px!important}.b-share-form-button_icons .b-share__handle_more{position:relative;padding-right:6px!important;margin-right:-4px}.b-share-form-button_icons .b-share-icon{opacity:.5;background-image:url("//yastatic.net/share/static/b-share-icon_size_14.png")}.b-share-form-button_icons A.b-share__handle:hover .b-share-icon{opacity:1}.b-share{font:86%/1.4545em Arial,sans-serif;display:-moz-inline-box;display:inline-block;padding:1px 3px 1px 4px!important;vertical-align:middle}.b-share .b-share-form-button{font-size:1em}.b-share__text .b-share-icon{margin:0 5px 0 0;border:none}.b-share__text{margin-right:5px}.b-share__handle{float:left;height:16px;padding:5px 3px 5px 2px!important;cursor:pointer;text-align:left;text-decoration:none!important}.b-share__handle_cursor_default{cursor:default}.b-share__handle .b-share-form-button{margin-top:-2px}.b-share__hr{display:none;float:left;width:1px;height:26px;margin:0 3px 0 2px}a.b-share__handle:hover .b-share__text{text-decoration:underline;color:red}.b-share_bordered{padding:0 2px 0 3px!important;border:1px solid #E4E4E4;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.b-share_bordered .b-share__hr{display:inline;background:#E4E4E4}.b-share_link{margin:-8px 0}a.b-share_link{margin:0}.b-share_link .b-share__text{text-decoration:underline;color:#1A3DC1}.b-share-form-button_share{padding-left:26px!important;vertical-align:top}.b-share-form-button_share .b-share-form-button__before{margin-left:-29px}.b-share-form-button_share .b-share-form-button__icon{position:absolute;width:20px;height:17px;margin:1px 0 0 -23px;background:url("//yastatic.net/share/static/b-share-form-button_share__icon.png") 0 0 no-repeat}.b-share-pseudo-link{border-bottom:1px dotted;cursor:pointer;text-decoration:none!important}.b-share_font_fixed{font-size:11px}.b-share__handle_more{font-size:9px;margin-top:-1px;color:#7B7B7B}A.b-share__handle_more:hover{color:#000}.b-share__group{float:left}.b-share-icon{float:left;display:inline;overflow:hidden;width:16px;height:16px;padding:0!important;vertical-align:top;border:0;background:url("//yastatic.net/share/static/b-share-icon.png") 0 99px no-repeat}.b-share-icon_vkontakte,.b-share-icon_custom{background-position:0 0}.b-share-icon_yaru,.b-share-icon_yaru_photo,.b-share-icon_yaru_wishlist{background-position:0 -17px}.b-share-icon_lj{background-position:0 -34px}.b-share-icon_twitter{background-position:0 -51px}.b-share-icon_facebook{background-position:0 -68px}.b-share-icon_moimir{background-position:0 -85px}.b-share-icon_friendfeed{background-position:0 -102px}.b-share-icon_mail{background-position:0 -119px}.b-share-icon_html{background-position:0 -136px}.b-share-icon_postcard{background-position:0 -153px}.b-share-icon_odnoklassniki{background-position:0 -170px}.b-share-icon_blogger{background-position:0 -187px}.b-share-icon_delicious{background-position:0 -221px}.b-share-icon_gbuzz{background-position:0 -238px}.b-share-icon_linkedin{background-position:0 -255px}.b-share-icon_myspace{background-position:0 -272px}.b-share-icon_evernote{background-position:0 -289px}.b-share-icon_digg{background-position:0 -306px}.b-share-icon_juick{background-position:0 -324px}.b-share-icon_moikrug{background-position:0 -341px}.b-share-icon_yazakladki{background-position:0 -358px}.b-share-icon_liveinternet{background-position:0 -375px}.b-share-icon_tutby{background-position:0 -392px}.b-share-icon_diary{background-position:0 -409px}.b-share-icon_gplus{background-position:0 -426px}.b-share-icon_pocket{background-position:0 -443px}.b-share-icon_surfingbird{background-position:0 -460px}.b-share-icon_pinterest{background-position:0 -477px}.b-share-icon_renren{background-position:0 0}.b-share-icon_renren,.b-share-icon_sina_weibo{background:url("//yastatic.net/share/static/b-share-icon__china.png") no-repeat}.b-share-icon_sina_weibo{background-position:-18px 0}.b-share-icon_qzone{background-position:-36px 0}.b-share-icon_qzone,.b-share-icon_tencent_weibo{background:url("//yastatic.net/share/static/b-share-icon__china.png") no-repeat}.b-share-icon_tencent_weibo{background-position:-54px 0}.b-share_theme_dark .b-share-icon{background:url("//yastatic.net/share/static/b-share-icons__theme_dark.png") 99px 0 no-repeat}.b-share_theme_dark .b-share-icon_odnoklassniki{background-position:-4px -3px}.b-share_theme_dark .b-share-icon_vkontakte{background-position:-24px -3px}.b-share_theme_dark .b-share-icon_twitter{background-position:-44px -3px}.b-share_theme_dark .b-share-icon_facebook{background-position:-64px -3px}.b-share_theme_dark .b-share-icon_lj{background-position:-85px -3px}.b-share_theme_dark .b-share-icon_yaru{background-position:-105px -3px}.b-share_theme_dark .b-share-popup .b-share-icon_odnoklassniki,.b-share_theme_dark .b-share-icon_odnoklassniki:hover{background-position:-4px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_vkontakte,.b-share_theme_dark .b-share-icon_vkontakte:hover{background-position:-24px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_twitter,.b-share_theme_dark .b-share-icon_twitter:hover{background-position:-44px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_facebook,.b-share_theme_dark .b-share-icon_facebook:hover{background-position:-64px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_lj,.b-share_theme_dark .b-share-icon_lj:hover{background-position:-85px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_yaru,.b-share_theme_dark .b-share-icon_yaru:hover{background-position:-105px -28px}.b-share_theme_dark .b-share-form-button_share .b-share-form-button__icon{background-image:url("//yastatic.net/share/static/b-share-form-button_share__icon_dark.png")}.b-share_theme_dark .b-share-form-button{color:#fff!important;opacity:.8}.b-share_theme_dark .b-share__handle:hover .b-share-form-button,.b-share_theme_dark .b-share-form-button:hover{opacity:1;cursor:pointer}.b-share_theme_dark .b-share-form-button,.b-share_theme_dark .b-share-form-button__before,.b-share_theme_dark .b-share-form-button__after{background:0 0}.b-share_theme_dark .b-share-popup__i{background-color:#333;border-radius:10px;-webkit-box-shadow:0 2px 9px rgba(255,255,255,.6);-moz-box-shadow:0 2px 9px rgba(255,255,255,.6);box-shadow:0 2px 9px rgba(255,255,255,.6)}.b-share_theme_dark .b-share__text{color:#AAA}.b-share_theme_dark .b-share-popup{color:#AAA;border-radius:10px;background-color:#333;background-color:rgba(50,50,50,.3)}.b-share_theme_dark .b-share-popup__item{background:0 0;color:#ccc}.b-share_theme_dark .b-share-popup .b-share-popup__item__text{color:#ccc}.b-share_theme_counter .b-share{display:inline-block;vertical-align:middle;white-space:nowrap}.b-share-counter{font:14px Arial,sans-serif;line-height:18px;display:none;float:left;margin:3px 6px 3px 3px;color:#fff}.b-share_theme_counter .b-share_type_small .b-share-counter{font-size:11px;line-height:14px;margin:2px 6px 2px 1px}.b-share_theme_counter .b-share-btn__counter .b-share-counter{display:block}.b-share-btn__counter{text-decoration:none}.b-share_theme_counter .b-share-btn__wrap{position:relative;float:left;margin-left:5px}.b-share_theme_counter .b-share_type_small .b-share-btn__wrap{margin-left:4px}.b-share_theme_counter .b-share-btn__wrap:first-child{margin-left:0}.b-share_theme_counter .b-share__link{display:inline-block;cursor:pointer;-webkit-border-radius:3px;border-radius:3px}.b-share_theme_counter .b-share_type_small .b-share__link{-webkit-border-radius:2px;border-radius:2px}.b-share_theme_counter .b-share-icon{display:block;float:left;width:24px;height:24px;background-image:url("//yastatic.net/share/static/b-share_counter_large.png");background-position:-20px 0}.b-share_theme_counter .b-share_type_small .b-share-icon{width:18px;height:18px;background-image:url("//yastatic.net/share/static/b-share_counter_small.png")}.b-share_theme_counter .b-share-icon_facebook{background-position:0 0}.b-share_theme_counter .b-share-btn__facebook{background-color:#3c5a98}.b-share_theme_counter .b-share-btn__facebook:hover{background-color:#30487a}.b-share_theme_counter .b-share-btn__facebook:active{border-top:2px solid #24365a;background-color:#334d81}.b-share_theme_counter .b-share-icon_moimir{background-position:0 -29px}.b-share_theme_counter .b-share-btn__moimir{background-color:#226eb7}.b-share_theme_counter .b-share-btn__moimir:hover{background-color:#1b5892}.b-share_theme_counter .b-share-btn__moimir:active{border-top:2px solid #14426d;background-color:#1d5e9c}.b-share_theme_counter .b-share-icon_vkontakte{background-position:0 -58px}.b-share_theme_counter .b-share-btn__vkontakte{background-color:#48729e}.b-share_theme_counter .b-share-btn__vkontakte:hover{background-color:#3a5b7e}.b-share_theme_counter .b-share-btn__vkontakte:active{border-top:2px solid #2b445e;background-color:#3d6186}.b-share_theme_counter .b-share-icon_twitter{background-position:0 -87px}.b-share_theme_counter .b-share-btn__twitter{background-color:#00aced}.b-share_theme_counter .b-share-btn__twitter:hover{background-color:#008abe}.b-share_theme_counter .b-share-btn__twitter:active{border-top:2px solid #00668d;background-color:#0092ca}.b-share_theme_counter .b-share-icon_odnoklassniki{background-position:0 -116px}.b-share_theme_counter .b-share-btn__odnoklassniki{background-color:#ff9f4d}.b-share_theme_counter .b-share-btn__odnoklassniki:hover{background-color:#cc7f3e}.b-share_theme_counter .b-share-btn__odnoklassniki:active{border-top:2px solid #975e2e;background-color:#d98742}.b-share_theme_counter .b-share-icon_gplus{background-position:0 -145px}.b-share_theme_counter .b-share-btn__gplus{background-color:#c25234}.b-share_theme_counter .b-share-btn__gplus:hover{background-color:#9b422a}.b-share_theme_counter .b-share-btn__gplus:active{border-top:2px solid #73311f;background-color:#a5462c}.b-share_theme_counter .b-share-icon_yaru{background-position:0 -174px}.b-share_theme_counter .b-share-btn__yaru{background-color:#d83933}.b-share_theme_counter .b-share-btn__yaru:hover{background-color:#ad2e29}.b-share_theme_counter .b-share-btn__yaru:active{border-top:2px solid #80221e;background-color:#b8312b}.b-share_theme_counter .b-share-icon_pinterest{background-position:0 -203px}.b-share_theme_counter .b-share-btn__pinterest{background-color:#cd1e27}.b-share_theme_counter .b-share-btn__pinterest:hover{background-color:#a4181f}.b-share_theme_counter .b-share-btn__pinterest:active{border-top:2px solid #7b1217;background-color:#ae1921}.b-share_theme_counter .b-share__link:active{height:22px}.b-share_theme_counter .b-share_type_small .b-share__link:active{height:16px}.b-share_theme_counter .b-share__link:active .b-share-icon,.b-share_theme_counter .b-share__link:active .b-share-counter{position:relative;top:-1px}.b-share_theme_counter .b-share__link::after{position:absolute;top:0;right:0;bottom:0;left:0;content:"";background-image:url(data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==)}.b-share_theme_counter .b-share__handle{height:auto;padding:0!important}</style></head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
+<a name="top" id="top"></a>
+  <table border="0" cellpadding="0" cellspacing="0" width="780" align="center">
+    <tbody><tr height="20">
+      <td>&nbsp;</td>
+      <td width="100%">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top" background="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_left.gif">
+      <img border="0" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_top_left.gif" width="11" height="17"></td>
+      <td width="100%" valign="top">
+      <table border="0" cellspacing="1" width="100%" bgcolor="#000000">
+        <tbody><tr>
+          <td width="100%">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody><tr>
+                <td class="pathway" valign="center" align="left"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/arrow.png" hspace="5">
+                <span class="breadcrumbs pathway">
+<a href="http://microsin.net/programming/index.html" class="pathway">Программирование</a> <img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/arrow.png" alt=""> <a href="http://microsin.net/programming/pc/index.html" class="pathway">PC</a> <img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/arrow.png" alt=""> Доступ к устройствам FTDI из C#</span>
+
+                </td>
+                <td class="pathway" valign="center" align="right">
+                Mon, January 11 2016&nbsp;&nbsp;</td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr height="80">
+          <td width="100%" bgcolor="#54647A" align="left" background="./Доступ к устройствам FTDI из C# _ pc _ programming_files/logo_bar_logo.jpg"></td>
+        </tr>
+        <tr>
+          <td width="100%" bgcolor="#AFC6DB" background="./Доступ к устройствам FTDI из C# _ pc _ programming_files/but_bar_back.gif">
+
+          		<div class="moduletable_topmenu">
+					<table width="100%" border="0" cellpadding="0" cellspacing="1"><tbody><tr><td nowrap="nowrap"><span class="mainlevel">  | </span><a href="http://microsin.net/" class="mainlevel">Главная</a><span class="mainlevel">  | </span><a href="http://microsin.net/mycontacts.html" class="mainlevel">Контакты</a><span class="mainlevel">  | </span><a href="http://microsin.net/adminstuff/index.html" class="mainlevel">Администрирование</a><span class="mainlevel">  | </span><a href="http://microsin.net/programming/index.html" class="mainlevel" id="active_menu">Программирование</a><span class="mainlevel">  | </span><a href="http://microsin.net/Ssyilki/index.html" class="mainlevel">Ссылки</a><span class="mainlevel">  | </span></td></tr></tbody></table>		</div>
+	
+
+                    </td>
+        </tr>
+        <tr>
+          <td width="100%" bgcolor="#FFFFFF">
+          <table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber1">
+            <tbody><tr>
+              <!-- LEFT Modules -->
+              
+                  <td valign="top" width="150" bgcolor="#F0F0F0">
+                    <div class="modules" style="width:155px;">
+                    		<div class="moduletable">
+					<table border="0">
+<tbody>
+<tr>
+<td><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/UK-flag-ico.png" border="0" alt="UK-flag-ico.png" title="English site version" align="bottom"></td>
+<td><a href="http://translate.google.ru/translate?hl=ru&amp;sl=ru&amp;tl=en&amp;u=http%3A%2F%2Fmicrosin.net%2F">English Version</a></td>
+</tr>
+<tr>
+<td><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/GERMAN-flag-ico.png" border="0" alt="GERMAN-flag-ico.png" title="Die deutsche Version der Webseite" align="bottom"></td>
+<td><a href="http://translate.google.ru/translate?hl=ru&amp;sl=ru&amp;tl=de&amp;u=http%3A%2F%2Fmicrosin.net%2F">Die deutsche Version</a></td>
+</tr>
+</tbody>
+</table>
+<a href="http://microsin.net/xmap-1.html">Карта сайта</a>		</div>
+			<div class="moduletable">
+					<h3>Поделиться</h3>
+					<!-- http://api.yandex.ru/share/ -->
+<script type="text/javascript" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/share.js" charset="utf-8"></script> <div class="yashare-auto-init" data-yasharel10n="ru" data-yasharetype="none" data-yasharequickservices="vkontakte,facebook,twitter,moimir,lj,yaru,friendfeed"><span class="b-share"><a rel="nofollow" target="_blank" title="ВКонтакте" class="b-share__handle b-share__link b-share-btn__vkontakte" href="https://share.yandex.net/go.xml?service=vkontakte&amp;url=http%3A%2F%2Fmicrosin.net%2Fprogramming%2Fpc%2Fftdi-devices-access-from-csharp.html&amp;title=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%20%D0%BA%20%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0%D0%BC%20FTDI%20%D0%B8%D0%B7%20C%23%20%7C%20pc%20%7C%20programming" data-service="vkontakte"><span class="b-share-icon b-share-icon_vkontakte"></span></a><a rel="nofollow" target="_blank" title="Facebook" class="b-share__handle b-share__link b-share-btn__facebook" href="https://share.yandex.net/go.xml?service=facebook&amp;url=http%3A%2F%2Fmicrosin.net%2Fprogramming%2Fpc%2Fftdi-devices-access-from-csharp.html&amp;title=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%20%D0%BA%20%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0%D0%BC%20FTDI%20%D0%B8%D0%B7%20C%23%20%7C%20pc%20%7C%20programming" data-service="facebook"><span class="b-share-icon b-share-icon_facebook"></span></a><a rel="nofollow" target="_blank" title="Twitter" class="b-share__handle b-share__link b-share-btn__twitter" href="https://share.yandex.net/go.xml?service=twitter&amp;url=http%3A%2F%2Fmicrosin.net%2Fprogramming%2Fpc%2Fftdi-devices-access-from-csharp.html&amp;title=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%20%D0%BA%20%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0%D0%BC%20FTDI%20%D0%B8%D0%B7%20C%23%20%7C%20pc%20%7C%20programming" data-service="twitter"><span class="b-share-icon b-share-icon_twitter"></span></a><a rel="nofollow" target="_blank" title="Мой Мир" class="b-share__handle b-share__link b-share-btn__moimir" href="https://share.yandex.net/go.xml?service=moimir&amp;url=http%3A%2F%2Fmicrosin.net%2Fprogramming%2Fpc%2Fftdi-devices-access-from-csharp.html&amp;title=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%20%D0%BA%20%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0%D0%BC%20FTDI%20%D0%B8%D0%B7%20C%23%20%7C%20pc%20%7C%20programming" data-service="moimir"><span class="b-share-icon b-share-icon_moimir"></span></a><a rel="nofollow" target="_blank" title="LiveJournal" class="b-share__handle b-share__link b-share-btn__lj" href="https://share.yandex.net/go.xml?service=lj&amp;url=http%3A%2F%2Fmicrosin.net%2Fprogramming%2Fpc%2Fftdi-devices-access-from-csharp.html&amp;title=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%20%D0%BA%20%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0%D0%BC%20FTDI%20%D0%B8%D0%B7%20C%23%20%7C%20pc%20%7C%20programming" data-service="lj"><span class="b-share-icon b-share-icon_lj"></span></a></span></div>		</div>
+			<div class="moduletable">
+					<script type="text/javascript">
+		window.addEvent('load', function() {
+		var url = '/component/option,com_acesearch/format,raw/task,complete/';
+		var completer = new Autocompleter.Ajax.Json($('qr-10034'), url, {'postVar': 'q'});
+	});
+		
+	function acesearchsubmit(){
+		var moquery = document.getElementById("qr-10034").value.length;
+		
+		if (moquery >= "3"  ) {
+			return true;
+		} 
+		else {
+			alert("Пожалуйста убедитесь, что Ваш запрос длиннее, чем 3 символов.");
+			return false;
+		}
+	}
+</script>
+
+<form id="acesearchModule-10034" action="http://microsin.net/component/option,com_acesearch/view,search/" method="post" name="acesearchModule" onsubmit="return acesearchsubmit();">
+	<div class="search acesearch_bg_module">
+		<input type="text" name="query" value="..." id="qr-10034" class="acesearch_input_module_modif" onblur="if(this.value==&#39;&#39;) this.value=&#39;...&#39;;" onfocus="if(this.value==&#39;...&#39;) this.value=&#39;&#39;;" style="margin-right:5px;" autocomplete="off"><a style="float:left;padding-left:5px;" href="http://microsin.net/component/option,com_acesearch/view,advancedsearch/" title="Расширенный поиск">Расширенный поиск</a><input type="hidden" name="lang" value="ru">	</div>
+	
+	<input type="hidden" name="option" value="com_acesearch">
+	<input type="hidden" name="view" value="search">
+	<input type="hidden" name="task" value="search">
+</form>
+<div class="acesearch_clear_mod_bottom"></div>		</div>
+			<div class="moduletable">
+					<h3>нашли опечатку?</h3>
+					Пожалуйста, сообщите об этом - просто выделите ошибочное слово или фразу и нажмите <b>Shift Enter</b>.		</div>
+	
+<br> <!-- ��� ��� ������� �� ���������� ������ -->
+                    </div>
+                  </td>
+                                <td valign="top">
+              <!-- Top Modules -->
+                                          <div class="nopad"><table class="contentpaneopen">
+<tbody><tr>
+		<td class="contentheading" width="100%">
+					Доступ к устройствам FTDI из C#			</td>
+				
+				<td align="right" width="100%" class="buttonheading">
+		<a href="http://microsin.net/programming/pc/ftdi-devices-access-from-csharp/Pechat.html" title="Печать" onclick="window.open(this.href,&#39;win2&#39;,&#39;status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no&#39;); return false;" rel="nofollow"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/printButton.png" alt="Печать"></a>		</td>
+		
+					</tr>
+</tbody></table>
+
+<table class="contentpaneopen">
+<tbody><tr>
+	<td valign="top">
+		<span class="small">
+			Добавил(а) microsin		</span>
+		&nbsp;&nbsp;
+	</td>
+</tr>
+
+
+
+<tr>
+<td valign="top">
+<p>Здесь описываются примеры кода, в котором осуществляется обмен с устройствами FTDI через драйверы D2XX и FTD2XX.DLL на языке C#.</p>
+
+
+
+<p>Компания FTDI предоставляет на платформе Windows управляемый класс-обертку (managed .NET wrapper class) для функций FTD2XX DLL. Эта managed wrapper DLL (FTD2XX_NET.DLL) предоставляется для свободной загрузки вместе с документацией Intellisense, имеющейся в файле FTD2XX_NET.XML - его можно просмотреть через Visual Studio Object Browser, и также предоставляются подсказки-хинты при написании кода.</p>
+<p>Примеры 3 и 4 ниже оба показывают, как использовать интерфейс FTD2XX_NET DLL. В Solution Explorer нужно добавить ссылку на файл FTD2XX_NET.DLL. Для этого просто сделайте правый клик на элемент References Solution Explorer в Вашем проекте Visual Studio, выберите "Add Reference", затем "Browse", и укажите на файл DLL. Файл XML должен быть размещен в том же месте, что и DLL.</p>
+<p></p><div class="spoiler" id="1_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="1-sp-head">
+			<div class="sp-head-click" id="1-sp-head-click"><a href="javascript:void(0)">Прямые ссылки (FTD2XX DLL, драйвер D2XX для Windows)</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 192px;"><div class="sp-body" id="1-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/FTD2XX_NET_v1.0.14.zip">FTD2XX_NET_v1.0.14.zip</a> FTD2XX_NET.DLL</p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/FTD2XX_NETclass.zip">FTD2XX_NETclass.zip</a> - исходный код класса .NET Wrapper</p>
+<p><a href="http://www.ftdichip.com/Drivers/CDM/CDM%20v2.12.00%20WHQL%20Certified.exe">CDM v2.12.00 WHQL Certified.exe</a> - инсталлятор для драйверов D2XX и VCP для Windows.</p>
+<p>Обратите внимание, что в инсталляционном пакете CDM v2.12.00 WHQL Certified.exe (подходящем для всех версий Windows, кроме Windows 95 и Windows 98) находятся сразу и драйверы VCP, и драйверы D2XX.</p>
+<p>Также для загрузки исходного кода .NET Wrapper см. страничку, посвященную примерам кода [1].</p>
+<p></p></div></div>
+			</div><p></p>
+<p>[<strong>Прием и передача данных через последовательный порт</strong>]</p>
+<p></p><div class="spoiler" id="2_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head folded" id="2-sp-head">
+			<div class="sp-head-click" id="2-sp-head-click"><a href="javascript:void(0)">Пример 1 - USBTransfer. GUI-приложение</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 0px;"><div class="sp-body" id="2-sp-body" style="margin: -757px 0px 0px;"><p></p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/USBTransfer.zip">USBTransfer.zip</a>. Компания KOPF GmbH разработала этот пример на C# (автор Oliver Kopf). Пример требует дополнительной DLL (<a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/Aid.zip">AID.DLL</a>) стиля C#. Кроме приведенных здесь ссылок, Вы можете скачать исходный код проекта и DLL с сайта KOPF GmbH, <a href="http://www.kopfweb.de/">http://www.kopfweb.de</a> (см. раздел сайта DOWNLOADS).</p>
+<p><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example1-USBTransfer.png" alt="FTDI Csharp example1 USBTransfer"></p>
+<p>В примере демонстрируются многие функции библиотеки. Однако недостаток примера в том, что весь код, работающий с функциями библиотеки FTDI, спрятан в отдельной AID.DLL, которая в примере поставляется в двоичном виде. Так что если Вы хотите получить пример использования функций, то придется отдельно найти исходный код для библиотеки AID.DLL на сайте разработчика (можно также найти проект для AID.DLL вместе с исходным кодом в архиве по ссылке [7]).</p>
+<p>Еще одно неудобство в том, что DLL скомпилирована под 32-битную Windows, поэтому если Ваше приложение работает на платформе x64, то нужно его перекомпилировать на платформу x86, и возможно появятся проблемы несовместимости.</p>
+<p></p></div></div>
+			</div><p></p>
+<p></p><div class="spoiler" id="3_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="3-sp-head">
+			<div class="sp-head-click" id="3-sp-head-click"><a href="javascript:void(0)">Пример 2 - D2XXAccess. GUI-приложение, демонстрирующее прием и передачу данных</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 442px;"><div class="sp-body" id="3-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/D2XXAccess_csharp.zip">D2XXAccess_csharp.zip</a>. Этот вариант приложения на C# изначально предназначен для Windows CE - в том виде, как его можно скачать с сайта FTDI. Я его перекомпилировал на Windows 7 x64, пример заработал нормально. ИМХО этот проект намного полезнее предыдущего, потому что в нем функции FTDI запускаются непосредственно, без использования промежуточной вспомогательной DLL. Показано, как получить список устройств, прочитать строки дескрипторов, открыть устройство, установить скорость, передать и принять данные.</p>
+<p><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example2-D2XXAccess.png" alt="FTDI Csharp example2 D2XXAccess"></p>
+<p>Для запуска на Windows CE пример требует наличия установленных драйверов D2XX (эти драйверы можно скачать на страничке <a href="http://www.ftdichip.com/Drivers/D2XX.htm">D2XX Drivers</a> сайта FTDI).</p>
+<p></p></div></div>
+			</div><p></p>
+<p></p><div class="spoiler" id="4_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="4-sp-head">
+			<div class="sp-head-click" id="4-sp-head-click"><a href="javascript:void(0)">Пример 3 - LoopBack. Консольное приложение, демонстрирующее прием и передачу данных</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 3307px;"><div class="sp-body" id="4-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/LoopBack.zip">LoopBack.zip</a>. Этот код показывает пример приема и передачи данных самому себе (loopback переводится как "обратная петля"), т. е. происходит запись в устройство и чтение из этого же устройства с использованием DLL-интерфейса FTD2XX_NET. В устройство будет записана легендарная фраза "Hello World!" в виде строки, и эта же строка будет прочитана из устройства обратно - имейте в виду, что нужно замкнуть сигнал Tx на сигнал Rx, чтобы получилась "обратная петля", и пример смог работать.</p>
+<p>Код требует, чтобы в системе Windows были установлены драйверы D2XX компании FTDI. Драйверы можно загрузить со странички Drivers [2] сайта FTDI.</p>
+<p>Основной код примера LoopBack находится в файле Program.cs:</p>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System.Collections.Generic</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System.Text</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System.Threading</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">FTD2XX_NET</span>;</pre>
+<pre style="margin: 0; line-height: 125%;">&nbsp;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">namespace</span> <span style="color: #0e84b5; font-weight: bold;">LoopBack</span></pre>
+<pre style="margin: 0; line-height: 125%;">{
+   <span style="color: #008800; font-weight: bold;">class</span> <span style="color: #bb0066; font-weight: bold;">Program</span>
+   {
+      <span style="color: #008800; font-weight: bold;">static</span> <span style="color: #008800; font-weight: bold;">void</span> <span style="color: #0066bb; font-weight: bold;">Main</span>(<span style="color: #333399; font-weight: bold;">string</span>[] args)
+      {
+         UInt32 ftdiDeviceCount = <span style="color: #6600ee; font-weight: bold;">0</span>;
+         FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;<br>
+         <span style="color: #888888;">// Создание нового экземпляр класса устройства FTDI:</span>
+         FTDI myFtdiDevice = <span style="color: #008800; font-weight: bold;">new</span> FTDI();
+         
+         <span style="color: #888888;">// Определение количества устройств FTDI, подключенных сейчас к компьютеру:</span>
+         ftStatus = myFtdiDevice.GetNumberOfDevices(<span style="color: #008800; font-weight: bold;">ref</span> ftdiDeviceCount);
+         <span style="color: #888888;">// Проверка результата вызова GetNumberOfDevices:</span>
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus == FTDI.FT_STATUS.FT_OK)
+         {
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Количество устройств FTDI: "</span>
+                            + ftdiDeviceCount.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+         }
+         <span style="color: #008800; font-weight: bold;">else</span>
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Ошибка получения количества устройств (ошибка "</span> 
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Если нет ни одного подключенного устройства, то возврат:</span>
+         <span style="color: #008800; font-weight: bold;">if</span> (ftdiDeviceCount == <span style="color: #6600ee; font-weight: bold;">0</span>)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Ошибка получения количества устройств (ошибка "</span> 
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Создание хранилища для списка информации об устройствах </span>
+         <span style="color: #888888;">//  (device info list):</span>
+         FTDI.FT_DEVICE_INFO_NODE[] ftdiDeviceList = 
+               <span style="color: #008800; font-weight: bold;">new</span> FTDI.FT_DEVICE_INFO_NODE[ftdiDeviceCount];<br>
+         <span style="color: #888888;">// Заполнение списка информацией:</span>
+         ftStatus = myFtdiDevice.GetDeviceList(ftdiDeviceList);<br>
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus == FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #008800; font-weight: bold;">for</span> (UInt32 i = <span style="color: #6600ee; font-weight: bold;">0</span>; i &lt; ftdiDeviceCount; i++)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Device Index: "</span> + i.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Flags: "</span> 
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].Flags));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Type: "</span>
+                            + ftdiDeviceList[i].Type.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].ID));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Location ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].LocId));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Serial Number: "</span>
+                            + ftdiDeviceList[i].SerialNumber.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Description: "</span>
+                            + ftdiDeviceList[i].Description.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+            }
+         }<br>
+         <span style="color: #888888;">// Открыть первое устройство в нашем списке по серийному номеру:</span>
+         ftStatus = myFtdiDevice.OpenBySerialNumber(ftdiDeviceList[<span style="color: #6600ee; font-weight: bold;">0</span>].SerialNumber);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось открыть устройство (ошибка "</span>
+                             + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Настройка параметров устройства.</span>
+         <span style="color: #888888;">// Установить скорость на 9600 бод:</span>
+         ftStatus = myFtdiDevice.SetBaudRate(<span style="color: #6600ee; font-weight: bold;">9600</span>);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Проблема в установке скорости (ошибка "</span>
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Установить формат фрейма - сколько бит данных, стоп-битов, четность:</span>
+         ftStatus = myFtdiDevice.SetDataCharacteristics(FTDI.FT_DATA_BITS.FT_BITS_8,
+                                                        FTDI.FT_STOP_BITS.FT_STOP_BITS_1,
+                                                        FTDI.FT_PARITY.FT_PARITY_NONE);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось настроить параметры фрейма (ошибка "</span>
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Настроить управление потоком (flow control) на использование</span>
+         <span style="color: #888888;">//  сигналов RTS/CTS:</span>
+         <span style="color: #888888;">//ftStatus = myFtdiDevice.SetFlowControl(FTDI.FT_FLOW_CONTROL.FT_FLOW_RTS_CTS,</span>
+         <span style="color: #888888;">//                                       0x11, 0x13);</span>
+         <span style="color: #888888;">//if (ftStatus != FTDI.FT_STATUS.FT_OK)</span>
+         <span style="color: #888888;">//{</span>
+         <span style="color: #888888;">//   // Ожидание нажатия на клавишу:</span>
+         <span style="color: #888888;">//   Console.WriteLine("Не получилось настроить flow control (ошибка "</span>
+         <span style="color: #888888;">//                   + ftStatus.ToString() + ")");</span>
+         <span style="color: #888888;">//   Console.ReadKey();</span>
+         <span style="color: #888888;">//   return;</span>
+         <span style="color: #888888;">//}<br></span>
+         <span style="color: #888888;">// Установить таймаут чтения на 5 секунд, таймаут записи на бесконечность:</span>
+         ftStatus = myFtdiDevice.SetTimeouts(<span style="color: #6600ee; font-weight: bold;">5000</span>, <span style="color: #6600ee; font-weight: bold;">0</span>);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось установить таймауты (ошибка "</span>
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Начало теста loop back - убедитесь, что вход устройства соединен с его</span>
+         <span style="color: #888888;">//  выходом.</span>
+         <span style="color: #888888;">// Запись строки в устройство:</span>
+         <span style="color: #333399; font-weight: bold;">string</span> dataToWrite = <span style="background-color: #fff0f0;">"Hello world!"</span>;
+         UInt32 numBytesWritten = <span style="color: #6600ee; font-weight: bold;">0</span>;
+         <span style="color: #888888;">// Обратите внимание, что метод Write перезагружен, благодаря чему можно</span>
+         <span style="color: #888888;">//  записать строку или массив данных:</span>
+         ftStatus = myFtdiDevice.Write(dataToWrite,
+                                       dataToWrite.Length,
+                                       <span style="color: #008800; font-weight: bold;">ref</span> numBytesWritten);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Неудачная запись в устройство (ошибка "</span>
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Проверка количества данных, доступных для чтения.</span>
+         <span style="color: #888888;">// В этом случае мы точно знаем, сколько данных должно поступить, </span>
+         <span style="color: #888888;">//  поэтому просто ждем, пока не получим все отправленные данные.</span>
+         UInt32 numBytesAvailable = <span style="color: #6600ee; font-weight: bold;">0</span>;
+         <span style="color: #008800; font-weight: bold;">do</span>
+         {
+            ftStatus = myFtdiDevice.GetRxBytesAvailable(<span style="color: #008800; font-weight: bold;">ref</span> numBytesAvailable);
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+               <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось проверить количество доступных "</span>
+                                + <span style="background-color: #fff0f0;">"для чтения байт (ошибка "</span>
+                                + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+               Console.ReadKey();
+               <span style="color: #008800; font-weight: bold;">return</span>;
+            }
+            Thread.Sleep(<span style="color: #6600ee; font-weight: bold;">10</span>);
+         } <span style="color: #008800; font-weight: bold;">while</span> (numBytesAvailable &lt; dataToWrite.Length);<br>
+         <span style="color: #888888;">// Теперь, когда у нас есть нужное количество байт, прочитаем их:</span>
+         <span style="color: #333399; font-weight: bold;">string</span> readData;
+         UInt32 numBytesRead = <span style="color: #6600ee; font-weight: bold;">0</span>;
+         <span style="color: #888888;">// Обратите внимание, что метод Read перезагружен, так что можно</span>
+         <span style="color: #888888;">//  прочитать строку или массив байт:</span>
+         ftStatus = myFtdiDevice.Read(<span style="color: #008800; font-weight: bold;">out</span> readData, 
+                                      numBytesAvailable,
+                                      <span style="color: #008800; font-weight: bold;">ref</span> numBytesRead);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось прочитать данные (ошибка "</span>
+                             + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         Console.WriteLine(readData);
+         <span style="color: #888888;">// Закроем наше устройство:</span>
+         ftStatus = myFtdiDevice.Close();
+         <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+         Console.WriteLine(<span style="background-color: #fff0f0;">"Нажмите любую клавишу для продолжения."</span>);
+         Console.ReadKey();
+         <span style="color: #008800; font-weight: bold;">return</span>;
+      }
+   }
+}
+</pre>
+</div>
+<p>Для проверки работы примера я использовал плату&nbsp;FT232R-Breakout [3].</p>
+<p><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/D2XX-Csharp-FT232R-Breakout-LoopBack.jpg"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/D2XX-Csharp-FT232R-Breakout-LoopBack.jpg" width="350" height="221" alt="D2XX Csharp FT232R Breakout LoopBack"></a></p>
+<p><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/D2XX-Csharp-LoopBack-running.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/D2XX-Csharp-LoopBack-running.png" alt="D2XX Csharp LoopBack running" width="350" height="177"></a></p>
+<p>Обратите внимание, что я в коде примера закомментировал настройку управления потоком (flow control) через сигналы RTS и CTS. Если этого не сделать, то для работы примера LoopBack придется замкнуть друг на друга не только сигналы RXD и TXD, но и еще и сигналы квитирования RTS и CTS.</p>
+<p></p></div></div>
+			</div><p></p>
+<p>В примерах 2 и 3 рассмотрена простая передача и прием данных через виртуальный COM-порт, который получается при подключении через USB микросхемы FTDI, но сделано это через вызовы функций библиотеки D2XX. Возникает резонный вопрос - зачем нужна дополнительная библиотека, когда для работы с COM-портом можно воспользоваться традиционными способами программирования, как например класс SerialPort библиотеки .NET (см. пример 5, а также ссылку [4])?</p>
+<p>Да, все это так, но в случае использования библиотеки D2XX добавляются преимущества: можно открыть канал связи не по его COM-имени (COM1, COM2...) а по серийному номеру, или можно просто выбрать устройство по нужным параметрам. Кроме того, можно использовать повышенные (и/или нестандартные) скорости обмена, и настраивать параметры устройства, которые другим способом настроить нельзя. Еще очень важно, что в случае сбоя связи с устройством (например, некачественный коннектор USB, который привел к аварийному переподключению устройства) можно программно восстановить работу без необходимости полного перезапуска приложения (см. описание функций библиотеки D2XX в [5]).</p>
+<p>В следующем примере показан один из примеров программного доступа к памяти EEPROM, позволяющий настраивать энергонезависимые параметры устройства - доступ к этим возможностям происходит исключительно через библиотеку D2XX.</p>
+<p></p><div class="spoiler" id="5_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="5-sp-head">
+			<div class="sp-head-click" id="5-sp-head-click"><a href="javascript:void(0)">Пример 5 - VCPTestCENET. Приложение, работающее с виртуальным COM-портом</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 447px;"><div class="sp-body" id="5-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/VCPTestCENET_Source.zip">VCPTestCENET_Source.zip</a> (исходный код), <a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/VCPTestCENET.zip">VCPTestCENET.zip</a> (исполняемый код). В этом примере используется компонент .NET SerialPort. &nbsp;Приложение VCPTestCENET ждет события приема символа, чтобы прочитать доступные данные из входного буфера. Можно записывать текст в устройство путем ручного ввода в текстовое поле.</p>
+<p>
+</p><table>
+<tbody>
+<tr>
+<td><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example5-VCPTestCENETa.png" alt="FTDI Csharp example5 VCPTestCENETa"></td>
+<td><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example5-VCPTestCENETb.png" alt="FTDI Csharp example5 VCPTestCENETb"></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>С точки зрения изучения интерфейса D2XX этот пример совсем не интересен, потому что функции FTDI&nbsp;из FTD2XX_NET.dll здесь совсем не используются.</p>
+<p></p></div></div>
+			</div><p></p>
+<p>[<strong>Настройка параметров устройства, работа с EEPROM</strong>]</p>
+<p></p><div class="spoiler" id="6_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="6-sp-head">
+			<div class="sp-head-click" id="6-sp-head-click"><a href="javascript:void(0)">Пример 4 - EEPROM</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 5915px;"><div class="sp-body" id="6-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<p><a href="http://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp/EEPROM.zip">EEPROM.zip</a>. Этот код дает пример изменения серийного номера в EEPROM устройства. Серийный номер вычитывается из EEPROM и изменяется на пустую строку (что позволяет для FTD2XX DLL сгенерировать серийный номер) перед программированием EEPROM новым содержимым.</p>
+<p>Код требует, чтобы в системе Windows были установлены драйверы D2XX компании FTDI. Драйверы можно загрузить со странички Drivers [2] сайта FTDI.</p>
+<p>Основной код примера EEPROM находится в файле Program.cs:</p>
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System.Collections.Generic</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System.Text</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">System.Threading</span>;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">FTD2XX_NET</span>;</pre>
+<pre style="margin: 0; line-height: 125%;">&nbsp;</pre>
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">namespace</span> <span style="color: #0e84b5; font-weight: bold;">EEPROM</span>
+{
+   <span style="color: #008800; font-weight: bold;">class</span> <span style="color: #bb0066; font-weight: bold;">Program</span>
+   {
+      <span style="color: #008800; font-weight: bold;">static</span> <span style="color: #008800; font-weight: bold;">void</span> <span style="color: #0066bb; font-weight: bold;">Main</span>(<span style="color: #333399; font-weight: bold;">string</span>[] args)
+      {
+         UInt32 ftdiDeviceCount = <span style="color: #6600ee; font-weight: bold;">0</span>;
+         FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
+         <span style="color: #888888;">// Создание нового экземпляра для класса устройства FTDI:</span>
+         FTDI myFtdiDevice = <span style="color: #008800; font-weight: bold;">new</span> FTDI();
+         <span style="color: #888888;">// Определение количества устройств FTDI, подключенных к компьютеру:</span>
+         ftStatus = myFtdiDevice.GetNumberOfDevices(<span style="color: #008800; font-weight: bold;">ref</span> ftdiDeviceCount);
+         <span style="color: #888888;">// Проверка результата вызова GetNumberOfDevices:</span>
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus == FTDI.FT_STATUS.FT_OK)
+         {
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Количество устройств FTDI: "</span>
+                            + ftdiDeviceCount.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+         }
+         <span style="color: #008800; font-weight: bold;">else</span>
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Ошибка получения количества устройств (ошибка "</span> 
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Если нет ни одного подключенного устройства, то возврат:</span>
+         <span style="color: #008800; font-weight: bold;">if</span> (ftdiDeviceCount == <span style="color: #6600ee; font-weight: bold;">0</span>)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Ошибка получения количества устройств (ошибка "</span> 
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Создание хранилища для списка информации об устройствах </span>
+         <span style="color: #888888;">//  (device info list):</span>
+         FTDI.FT_DEVICE_INFO_NODE[] ftdiDeviceList = 
+               <span style="color: #008800; font-weight: bold;">new</span> FTDI.FT_DEVICE_INFO_NODE[ftdiDeviceCount];<br>
+         <span style="color: #888888;">// Заполнение списка информацией:</span>
+         ftStatus = myFtdiDevice.GetDeviceList(ftdiDeviceList);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus == FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #008800; font-weight: bold;">for</span> (UInt32 i = <span style="color: #6600ee; font-weight: bold;">0</span>; i &lt; ftdiDeviceCount; i++)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Device Index: "</span> + i.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Flags: "</span> 
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].Flags));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Type: "</span>
+                            + ftdiDeviceList[i].Type.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].ID));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Location ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].LocId));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Serial Number: "</span>
+                            + ftdiDeviceList[i].SerialNumber.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Description: "</span>
+                            + ftdiDeviceList[i].Description.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+            }
+         }<br>
+         <span style="color: #888888;">// Открыть первое устройство в нашем списке по серийному номеру:</span>
+         ftStatus = myFtdiDevice.OpenBySerialNumber(ftdiDeviceList[<span style="color: #6600ee; font-weight: bold;">0</span>].SerialNumber);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось открыть устройство (ошибка "</span>
+                             + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Создание структуры EEPROM нашего устройства,</span>
+         <span style="color: #888888;">//  базируясь на типе устройства, которое мы открыли:</span>
+         <span style="color: #008800; font-weight: bold;">if</span> (ftdiDeviceList[<span style="color: #6600ee; font-weight: bold;">0</span>].Type == FTDI.FT_DEVICE.FT_DEVICE_232R)
+         {
+            <span style="color: #888888;">// У нас FT232R или FT245R, поэтому используем структуру FT232R EEPROM:</span>
+            FTDI.FT232R_EEPROM_STRUCTURE myEEData = <span style="color: #008800; font-weight: bold;">new</span> FTDI.FT232R_EEPROM_STRUCTURE();
+            <span style="color: #888888;">// Чтение EEPROM устройства.</span>
+            <span style="color: #888888;">// При попытке чтения устройства, тип которого не соответствует</span>
+            <span style="color: #888888;">//  используемой структуре, может произойти ошибка (выброс исключения,</span>
+            <span style="color: #888888;">//  throw an exception), поэтому всегда используйте в этом месте </span>
+            <span style="color: #888888;">//  блок try - catch.</span>
+            <span style="color: #008800; font-weight: bold;">try</span>
+            {
+                ftStatus = myFtdiDevice.ReadFT232REEPROM(myEEData);
+            }
+            <span style="color: #008800; font-weight: bold;">catch</span> (FTDI.FT_EXCEPTION)
+            {
+                Console.WriteLine(<span style="background-color: #fff0f0;">"При вызове ReadFT232REEPROM сработало исключение"</span>);
+            }
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+                Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось прочитать EEPROM устройства (ошибка "</span>
+                                + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+                Console.ReadKey();
+                <span style="color: #888888;">// Закрытие устройства и возврат:</span>
+                myFtdiDevice.Close();
+                <span style="color: #008800; font-weight: bold;">return</span>;
+            }<br>
+            <span style="color: #888888;">// Печать общих элементов EEPROM в консоль приложения:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Содержимое EEPROM для устройства по индексу 0:"</span>);
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Vendor ID: "</span> 
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, myEEData.VendorID));
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Product ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, myEEData.ProductID));
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Manufacturer: "</span>
+                            + myEEData.Manufacturer.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Manufacturer ID: "</span>
+                            + myEEData.ManufacturerID.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Description: "</span>
+                            + myEEData.Description.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Serial Number: "</span>
+                            + myEEData.SerialNumber.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Max Power: "</span>
+                            + myEEData.MaxPower.ToString() + <span style="background-color: #fff0f0;">"mA"</span>);
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Self Powered: "</span>
+                            + myEEData.SelfPowered.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Remote Wakeup Enabled: "</span>
+                            + myEEData.RemoteWakeup.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+            <span style="color: #888888;">// Изменим серийный номер и запишем обратно в устройство.</span>
+            <span style="color: #888888;">// Путем установки серийного номера в пустую строку мы</span>
+            <span style="color: #888888;">//  тем самым разрешаем FTD2XX DLL сгенерировать серийный номер.</span>
+            myEEData.SerialNumber = String.Empty;<br>
+            <span style="color: #888888;">// Запись нашей модифицированной структуры обратно в EEPROM устройства.</span>
+            <span style="color: #888888;">// При попытке записи устройства, тип которого не соответствует</span>
+            <span style="color: #888888;">//  используемой структуре, может произойти ошибка (выброс исключения,</span>
+            <span style="color: #888888;">//  throw an exception), поэтому всегда используйте в этом месте </span>
+            <span style="color: #888888;">//  блок try - catch.</span>
+            <span style="color: #008800; font-weight: bold;">try</span>
+            {
+               ftStatus = myFtdiDevice.WriteFT232REEPROM(myEEData);
+            }
+            <span style="color: #008800; font-weight: bold;">catch</span> (FTDI.FT_EXCEPTION)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"При вызове WriteFT232REEPROM сработало исключение"</span>);
+            }
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+               <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось записать EEPROM устройства (ошибка "</span>
+                               + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+               Console.ReadKey();
+                <span style="color: #888888;">// Закрытие устройства и возврат:</span>
+               myFtdiDevice.Close();
+               <span style="color: #008800; font-weight: bold;">return</span>;
+            }
+         }
+         <span style="color: #008800; font-weight: bold;">else</span> <span style="color: #0066bb; font-weight: bold;">if</span> (ftdiDeviceList[<span style="color: #6600ee; font-weight: bold;">0</span>].Type == FTDI.FT_DEVICE.FT_DEVICE_2232)
+         {
+            <span style="color: #888888;">// У нас FT2232, поэтому используем структуру EEPROM для FT2232:</span>
+            FTDI.FT2232_EEPROM_STRUCTURE myEEData = <span style="color: #008800; font-weight: bold;">new</span> FTDI.FT2232_EEPROM_STRUCTURE();
+            <span style="color: #888888;">// Чтение EEPROM устройства.</span>
+            <span style="color: #888888;">// При попытке чтения устройства, тип которого не соответствует</span>
+            <span style="color: #888888;">//  используемой структуре, может произойти ошибка (выброс исключения,</span>
+            <span style="color: #888888;">//  throw an exception), поэтому всегда используйте в этом месте </span>
+            <span style="color: #888888;">//  блок try - catch.</span>
+            <span style="color: #008800; font-weight: bold;">try</span>
+            {
+               ftStatus = myFtdiDevice.ReadFT2232EEPROM(myEEData);
+            }
+            <span style="color: #008800; font-weight: bold;">catch</span> (FTDI.FT_EXCEPTION)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"При вызове ReadFT2232EEPROM сработало исключение"</span>);
+            }
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+               <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось прочитать EEPROM устройства (ошибка "</span>
+                               + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+               Console.ReadKey();
+                <span style="color: #888888;">// Закрытие устройства и возврат:</span>
+               myFtdiDevice.Close();
+               <span style="color: #008800; font-weight: bold;">return</span>;
+            }<br>
+            <span style="color: #888888;">// Печать общих элементов EEPROM в консоль приложения:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Содержимое EEPROM для устройства по индексу 0:"</span>);
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Vendor ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, myEEData.VendorID));
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Product ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, myEEData.ProductID));
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Manufacturer: "</span>
+                            + myEEData.Manufacturer.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Manufacturer ID: "</span>
+                            + myEEData.ManufacturerID.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Description: "</span>
+                            + myEEData.Description.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Serial Number: "</span>
+                            + myEEData.SerialNumber.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Max Power: "</span>
+                            + myEEData.MaxPower.ToString() + <span style="background-color: #fff0f0;">"mA"</span>);
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Self Powered: "</span>
+                            + myEEData.SelfPowered.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Remote Wakeup Enabled: "</span>
+                            + myEEData.RemoteWakeup.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+            <span style="color: #888888;">// Изменим серийный номер и запишем обратно в устройство.</span>
+            <span style="color: #888888;">// Путем установки серийного номера в пустую строку мы</span>
+            <span style="color: #888888;">//  тем самым разрешаем FTD2XX DLL сгенерировать серийный номер.</span>
+            myEEData.SerialNumber = String.Empty;
+            <span style="color: #888888;">// Запись нашей модифицированной структуры обратно в EEPROM устройства.</span>
+            <span style="color: #888888;">// При попытке записи устройства, тип которого не соответствует</span>
+            <span style="color: #888888;">//  используемой структуре, может произойти ошибка (выброс исключения,</span>
+            <span style="color: #888888;">//  throw an exception), поэтому всегда используйте в этом месте </span>
+            <span style="color: #888888;">//  блок try - catch.</span>
+            <span style="color: #008800; font-weight: bold;">try</span>
+            {
+               ftStatus = myFtdiDevice.WriteFT2232EEPROM(myEEData);
+            }
+            <span style="color: #008800; font-weight: bold;">catch</span> (FTDI.FT_EXCEPTION)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"При вызове WriteFT2232EEPROM сработало исключение"</span>);
+            }
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+               <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось записать EEPROM устройства (ошибка "</span>
+                               + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+               Console.ReadKey();
+                <span style="color: #888888;">// Закрытие устройства и возврат:</span>
+               myFtdiDevice.Close();
+               <span style="color: #008800; font-weight: bold;">return</span>;
+            }
+         }
+         <span style="color: #008800; font-weight: bold;">else</span> <span style="color: #0066bb; font-weight: bold;">if</span> (ftdiDeviceList[<span style="color: #6600ee; font-weight: bold;">0</span>].Type == FTDI.FT_DEVICE.FT_DEVICE_BM)
+         {
+            <span style="color: #888888;">// У нас FT232B или FT245B, поэтому используем структуру EEPROM FT232B:</span>
+            FTDI.FT232B_EEPROM_STRUCTURE myEEData = <span style="color: #008800; font-weight: bold;">new</span> FTDI.FT232B_EEPROM_STRUCTURE();
+            <span style="color: #888888;">// Чтение EEPROM устройства.</span>
+            <span style="color: #888888;">// При попытке чтения устройства, тип которого не соответствует</span>
+            <span style="color: #888888;">//  используемой структуре, может произойти ошибка (выброс исключения,</span>
+            <span style="color: #888888;">//  throw an exception), поэтому всегда используйте в этом месте </span>
+            <span style="color: #888888;">//  блок try - catch.</span>
+            <span style="color: #008800; font-weight: bold;">try</span>
+            {
+               ftStatus = myFtdiDevice.ReadFT232BEEPROM(myEEData);
+            }
+            <span style="color: #008800; font-weight: bold;">catch</span> (FTDI.FT_EXCEPTION)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"При вызове ReadFT2232EEPROM сработало исключение"</span>);
+            }
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+               <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Failed to read device EEPROM (error "</span>
+                               + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+               Console.ReadKey();
+                <span style="color: #888888;">// Закрытие устройства и возврат:</span>
+               myFtdiDevice.Close();
+               <span style="color: #008800; font-weight: bold;">return</span>;
+            }<br>
+            <span style="color: #888888;">// Печать общих элементов EEPROM в консоль приложения:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Содержимое EEPROM для устройства по индексу 0:"</span>);
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Vendor ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, myEEData.VendorID));
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Product ID: "</span>
+                            + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, myEEData.ProductID));
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Manufacturer: "</span>
+                            + myEEData.Manufacturer.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Manufacturer ID: "</span>
+                            + myEEData.ManufacturerID.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Description: "</span>
+                            + myEEData.Description.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Serial Number: "</span>
+                            + myEEData.SerialNumber.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Max Power: "</span>
+                            + myEEData.MaxPower.ToString() + <span style="background-color: #fff0f0;">"mA"</span>);
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Self Powered: "</span>
+                            + myEEData.SelfPowered.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Remote Wakeup Enabled: "</span>
+                            + myEEData.RemoteWakeup.ToString());
+            Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+            <span style="color: #888888;">// Изменим серийный номер и запишем обратно в устройство.</span>
+            <span style="color: #888888;">// Путем установки серийного номера в пустую строку мы</span>
+            <span style="color: #888888;">//  тем самым разрешаем FTD2XX DLL сгенерировать серийный номер.</span>
+            myEEData.SerialNumber = String.Empty;
+            <span style="color: #888888;">// Запись нашей модифицированной структуры обратно в EEPROM устройства.</span>
+            <span style="color: #888888;">// При попытке записи устройства, тип которого не соответствует</span>
+            <span style="color: #888888;">//  используемой структуре, может произойти ошибка (выброс исключения,</span>
+            <span style="color: #888888;">//  throw an exception), поэтому всегда используйте в этом месте </span>
+            <span style="color: #888888;">//  блок try - catch.</span>
+            <span style="color: #008800; font-weight: bold;">try</span>
+            {
+               ftStatus = myFtdiDevice.WriteFT232BEEPROM(myEEData);
+            }
+            <span style="color: #008800; font-weight: bold;">catch</span> (FTDI.FT_EXCEPTION)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"При вызове WriteFT232BEEPROM сработало исключение"</span>);
+            }
+            <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+               <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось записать EEPROM устройства (ошибка "</span>
+                               + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+               Console.ReadKey();
+                <span style="color: #888888;">// Закрытие устройства и возврат:</span>
+               myFtdiDevice.Close();
+               <span style="color: #008800; font-weight: bold;">return</span>;
+            }
+         }
+         <span style="color: #888888;">// Использование фичи "cycle port" (эмуляция переподключения устройства),</span>
+         <span style="color: #888888;">//  чтобы вызвать принудительную повторную энумерацию устройства.  </span>
+         <span style="color: #888888;">// В библиотеке класса FTD2XX_NET, метод cycle port также закрывает</span>
+         <span style="color: #888888;">//  открытый хендл устройства, поэтому не нужно вызывать отдельно</span>
+         <span style="color: #888888;">//  метод Close.</span>
+         ftStatus = myFtdiDevice.CyclePort();
+         UInt32 newFtdiDeviceCount = <span style="color: #6600ee; font-weight: bold;">0</span>;
+         <span style="color: #008800; font-weight: bold;">do</span>
+         {
+            <span style="color: #888888;">// Ожидание завершения переэнумерации устройства.</span>
+            <span style="color: #888888;">// У устройства будет то же самое место положения на шине (location)</span>
+            <span style="color: #888888;">//  потому что оно не извлекалось физически, поэтому будем пробовать</span>
+            <span style="color: #888888;">//  открыть до успешного завершения операции.</span>
+            ftStatus = myFtdiDevice.OpenByLocation(ftdiDeviceList[<span style="color: #6600ee; font-weight: bold;">0</span>].LocId);
+            Thread.Sleep(<span style="color: #6600ee; font-weight: bold;">1000</span>);
+         } <span style="color: #008800; font-weight: bold;">while</span> (ftStatus != FTDI.FT_STATUS.FT_OK);<br>
+         <span style="color: #888888;">// Закрыть устройство.</span>
+         myFtdiDevice.Close();
+         <span style="color: #888888;">// Заново создадим наш список устройств:</span>
+         ftStatus = myFtdiDevice.GetNumberOfDevices(<span style="color: #008800; font-weight: bold;">ref</span> newFtdiDeviceCount);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus != FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+            Console.WriteLine(<span style="background-color: #fff0f0;">"Не получилось определить количество устройств (ошибка "</span>
+                            + ftStatus.ToString() + <span style="background-color: #fff0f0;">")"</span>);
+            Console.ReadKey();
+            <span style="color: #008800; font-weight: bold;">return</span>;
+         }<br>
+         <span style="color: #888888;">// Заново заполним список информацией:</span>
+         ftStatus = myFtdiDevice.GetDeviceList(ftdiDeviceList);
+         <span style="color: #008800; font-weight: bold;">if</span> (ftStatus == FTDI.FT_STATUS.FT_OK)
+         {
+            <span style="color: #008800; font-weight: bold;">for</span> (UInt32 i = <span style="color: #6600ee; font-weight: bold;">0</span>; i &lt; ftdiDeviceCount; i++)
+            {
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Device Index: "</span>
+                               + i.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Flags: "</span>
+                               + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].Flags));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Type: "</span>
+                               + ftdiDeviceList[i].Type.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"ID: "</span>
+                               + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].ID));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Location ID: "</span>
+                               + String.Format(<span style="background-color: #fff0f0;">"{0:x}"</span>, ftdiDeviceList[i].LocId));
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Serial Number: "</span>
+                               + ftdiDeviceList[i].SerialNumber.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">"Description: "</span>
+                               + ftdiDeviceList[i].Description.ToString());
+               Console.WriteLine(<span style="background-color: #fff0f0;">""</span>);
+            }
+         }
+         <span style="color: #888888;">// Ожидание нажатия на клавишу:</span>
+         Console.WriteLine(<span style="background-color: #fff0f0;">"Для продолжения нажмите любую клавишу."</span>);
+         Console.ReadKey();
+         <span style="color: #008800; font-weight: bold;">return</span>;
+      }
+   }
+}
+</pre>
+</div>
+<p>Тестировался пример EEPROM также на плате FT232R-Board [3]. Ниже на скриншотах показано, как это работает. До запуска программы плата была определена в системе как COM3, а после запуска программы серийный номер поменялся, и поэтому после повторной энумерации плата стала определяться как порт COM4.</p>
+<p><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-device-before-SN-change.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-device-before-SN-change.png" alt="FTDI device before SN change" width="173" height="212"></a></p>
+<p><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/D2XX-Csharp-EEPROM-running.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/D2XX-Csharp-EEPROM-running.png" alt="D2XX Csharp EEPROM running" width="350" height="270"></a></p>
+<p><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-device-after-SN-change.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-device-after-SN-change.png" alt="FTDI device after SN change" width="173" height="212"></a></p>
+<p>Программа очень простая, несмотря на большой размер листинга, потому что многие блоки кода повторяются (для того, чтобы обслуживать устройства разных типов, и потому, что некоторые операции выполняются повторно).</p>
+<p></p></div></div>
+			</div><p></p>
+<p>Обратите внимание, что некоторая часть кода Примеров 3 и 4 совпадает (это шаги, касающиеся создания списка устройств, заполнения списка информацией, открытия устройства, вывода его параметров).</p>
+<p>[<strong>BitBang</strong>]</p>
+<p>BitBang - это использование ножек чипа FTDI как портов ввода/вывода (GPIO), подключенных к компьютеру через USB. С помощью библиотеки D2XX можно настраивать порты как вход или выход, считывать их значение, устанавливать логический уровень на выходе.</p>
+<p>В режиме асинхронного BitBang любые данные, которые Вы записали в устройство, попадут на выводы чипа, которые настроены как выходы. Скорость, с которой записанные данные попадут на выход, определяется генератором скорости устройства (Baud rate generator). Если в устройство не записываются данные, то выводы остаются в последнем состоянии, установившемся после последней записи.</p>
+<p>С режимом BitBang работают функции FT_SetBitMode, FT_SetBaudRate, FT_Write, FT_GetBitMode, FT_Read (подробнее см. [5, 6]). На C# для асинхронного управления выводами следует пользоваться готовым классом FTDI и его соответствующими методами SetBitMode, Write, Read.</p>
+<p></p><div class="spoiler" id="7_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="7-sp-head">
+			<div class="sp-head-click" id="7-sp-head-click"><a href="javascript:void(0)">Пример 6a. Асинхронное управление выходами</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 760px;"><div class="sp-body" id="7-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">FTD2XX_NET</span>;
+...<br>
+FTDI myFtdiDevice = <span style="color: #008800; font-weight: bold;">new</span> FTDI();
+FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;<br><span style="color: #333399; font-weight: bold;">byte</span>[] data = <span style="color: #008800; font-weight: bold;">new</span> <span style="color: #333399; font-weight: bold;">byte</span>[<span style="color: #6600ee; font-weight: bold;">1</span>] { <span style="color: #6600ee; font-weight: bold;">0</span> };
+UInt32 numBytesWritten = <span style="color: #6600ee; font-weight: bold;">0</span>;<br><br><span style="color: #008800; font-weight: bold;">while</span> (<span style="color: #008800; font-weight: bold;">true</span>)
+{
+   <span style="color: #888888;">//Открыть первое попавшееся устройство FTDI:</span>
+   ftStatus = myFtdiDevice.OpenByIndex(<span style="color: #6600ee; font-weight: bold;">0</span>);
+   <span style="color: #888888;">//Настроить все ножки порта как выходы (передана маска 0xFF), установить</span>
+   <span style="color: #888888;">// асинхронный режим управления выходами:</span>
+   ftStatus = myFtdiDevice.SetBitMode(<span style="color: #6600ee; font-weight: bold;">0</span>xFF, FTDI.FT_BIT_MODES.FT_BIT_MODE_ASYNC_BITBANG);
+   <span style="color: #888888;">//Вывод байта данных в ножки FT232R (управление выходами):</span>
+   ftStatus = myFtdiDevice.Write(data, data.Length, <span style="color: #008800; font-weight: bold;">ref</span> numBytesWritten);
+   <span style="color: #888888;">//Закрыть устройство, если оно открыто:</span>
+   <span style="color: #008800; font-weight: bold;">if</span> (myFtdiDevice.IsOpen)
+      ftStatus = myFtdiDevice.Close();
+   <span style="color: #888888;">//Изменение значений всех бит байта на противоположное:</span>
+   data[<span style="color: #6600ee; font-weight: bold;">0</span>] = (data[<span style="color: #6600ee; font-weight: bold;">0</span>] == <span style="color: #6600ee; font-weight: bold;">0</span>) ? (<span style="color: #333399; font-weight: bold;">byte</span>)<span style="color: #6600ee; font-weight: bold;">0</span>xFF : (<span style="color: #333399; font-weight: bold;">byte</span>)<span style="color: #6600ee; font-weight: bold;">0</span>x00;
+   <span style="color: #888888;">//Задержка 0.5 секунды:</span>
+   System.Threading.Thread.Sleep(<span style="color: #6600ee; font-weight: bold;">500</span>);
+}
+</pre>
+</div>
+<p>Для упрощения здесь опущены проверки ошибок и наличия на шине USB нужного устройства. Если подключить светодиод к любой ножке платы FT232R-Breakout [3], то он будет мигать с частотой 1 Гц.</p>
+<p>Этот код может быть вставлен в отдельный поток (например BackgroundWorker).</p>
+<p><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/BitBangCsharp-output-example6.gif" alt="BitBangCsharp output example6"></p>
+<p></p></div></div>
+			</div><p></p>
+<p></p><div class="spoiler" id="8_spoiler">
+                        <input type="hidden" class="opened" value="0">
+			<div class="sp-head unfolded" id="8-sp-head">
+			<div class="sp-head-click" id="8-sp-head-click"><a href="javascript:void(0)">Пример 6b. Асинхронное чтение входов</a></div></div>
+			<div style="margin: 0px; position: static; overflow: hidden; height: 597px;"><div class="sp-body" id="8-sp-body" style="margin: 0px; visibility: visible; zoom: 1; opacity: 1;"><p></p>
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+<pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">using</span> <span style="color: #0e84b5; font-weight: bold;">FTD2XX_NET</span>;
+...<br>
+FTDI myFtdiDevice = <span style="color: #008800; font-weight: bold;">new</span> FTDI();
+FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;<br><span style="color: #333399; font-weight: bold;">byte</span>[] data = <span style="color: #008800; font-weight: bold;">new</span> <span style="color: #333399; font-weight: bold;">byte</span>[<span style="color: #6600ee; font-weight: bold;">1</span>] { <span style="color: #6600ee; font-weight: bold;">0</span> };
+UInt32 numBytesWritten = <span style="color: #6600ee; font-weight: bold;">0</span>;<br><br><span style="color: #008800; font-weight: bold;">while</span> (<span style="color: #008800; font-weight: bold;">true</span>)
+{
+   <span style="color: #888888;">//Открыть первое попавшееся устройство FTDI:</span>
+   ftStatus = myFtdiDevice.OpenByIndex(<span style="color: #6600ee; font-weight: bold;">0</span>);
+   <span style="color: #888888;">//Настроить все ножки порта как входы (передана маска 0x00), установить</span>
+   <span style="color: #888888;">// асинхронный режим управления:</span>
+   ftStatus = myFtdiDevice.SetBitMode(<span style="color: #6600ee; font-weight: bold;">0</span>x00, FTDI.FT_BIT_MODES.FT_BIT_MODE_ASYNC_BITBANG);
+   <span style="color: #888888;">//Ввод байта данных из ножек FT232R (D7..D0), байт попадет в data[0]:</span>
+   ftStatus = myFtdiDevice.Read(data, data.Length, <span style="color: #008800; font-weight: bold;">ref</span> numBytesWritten);
+   <span style="color: #888888;">//Закрыть устройство, если оно открыто:</span>
+   <span style="color: #008800; font-weight: bold;">if</span> (myFtdiDevice.IsOpen)
+      ftStatus = myFtdiDevice.Close();
+   <span style="color: #888888;">//Задержка 10 мс:</span>
+   System.Threading.Thread.Sleep(<span style="color: #6600ee; font-weight: bold;">10</span>);
+}
+</pre>
+</div>
+<p>Для упрощения здесь опущены проверки ошибок и наличия на шине USB нужного устройства.</p>
+<p><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FT232R-Breakout-v36-pinout-D7-D0.jpg"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FT232R-Breakout-v36-pinout-D7-D0.jpg" alt="FT232R-Breakout-v36-pinout-D7-D0" width="246" height="200"></a></p>
+<p></p></div></div>
+			</div><p></p>
+<p>Я создал проект&nbsp;Sample6.BitBang (см. [7]), в котором демонстрируется определение подключения и отключения устройства, возможность чтения входов и управления выходами. Если устройство не подключено, то на форме отображается серая картинка платы FT232R-Breakout. Если устройство подключено, то картинка становится полноцветной, и доступно тестирование функций чтения/записи BitBang в асинхронном режиме.</p>
+<p>
+</p><table>
+<tbody>
+<tr>
+<td><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example6-BitBang-disconnected.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example6-BitBang-disconnected.png" alt="FTDI Csharp example6 BitBang disconnected" width="160" height="180"></a></td>
+<td><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example6-BitBang-input.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example6-BitBang-input.png" alt="FTDI Csharp example6 BitBang input" width="160" height="180"></a></td>
+<td><a href="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example6-BitBang-output.png"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/FTDI-Csharp-example6-BitBang-output.png" alt="FTDI Csharp example6 BitBang output" width="160" height="180"></a></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Если подключить плату&nbsp;FT2232H Board, то будет осуществляться работа с портами ADBUS7..ADBUS0.</p>
+<p>[<strong>Ссылки</strong>]</p>
+<p><strong>1</strong>. <span style="color: #333399;">Code Examples site:ftdichip.com</span>.<br><strong>2</strong>. <span style="color: #333399;">D2XX Drivers site:ftdichip.com</span>.<br><strong>3</strong>.&nbsp;<a href="http://microsin.net/adminstuff/hardware/ft232r-breakout-board.html">Плата FT232R-Breakout</a>.<br><strong>4</strong>. <a href="http://microsin.net/programming/pc/visual-studio-sharp-dot-net-com-port.html">Visual Studio C#: работа с последовательным портом</a>.<br><strong>5</strong>. <a href="http://microsin.net/programming/pc/ftdi-d2xx-functions-api.html">FTDI: справочник по функциям библиотеки D2XX</a>.<br><strong>6</strong>. <a href="http://microsin.net/adminstuff/hardware/bit-bang-modes-ft232r-and-ft245r.html">Режимы BitBang для микросхем FT232R и FT245R</a>.<br><strong>7</strong>. <a href="http://dfiles.ru/files/30zyh64jq">150607FTDIexamples.zip</a> - примеры кода, описанные в статье (проекты Visual C#).</p></td>
+</tr>
+
+</tbody></table>
+<span class="article_separator">&nbsp;</span>
+<script type="text/javascript">
+<!--
+var jcomments=new JComments(1836, 'com_content','/index.php?option=com_jcomments&amp;tmpl=component');
+jcomments.setList('comments-list');
+//-->
+</script>
+<div id="jc">
+<div id="comments"></div>
+<h4>Добавить комментарий</h4>
+<a id="addcomments" href="http://microsin.net/programming/pc/ftdi-devices-access-from-csharp.html#addcomments"></a>
+<form id="comments-form" name="comments-form" action="javascript:void(null);">
+<p>
+	<input id="comments-form-name" type="text" name="name" value="" maxlength="20" size="22" tabindex="1">
+	<label for="comments-form-name">Имя (обязательное)</label>
+</p>
+<p>
+	<input id="comments-form-email" type="text" name="email" value="" size="22" tabindex="2">
+	<label for="comments-form-email">E-Mail (обязательное)</label>
+</p>
+<p>
+	<input id="comments-form-homepage" type="text" name="homepage" value="" size="22" tabindex="3">
+	<label for="comments-form-homepage">Сайт</label>
+</p>
+<p>
+	<div class="smiles"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/laugh.gif" alt=":D" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/lol.gif" alt=":lol:" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/smile.gif" alt=":-)" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/wink.gif" alt=";-)" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/cool.gif" alt="8)" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/normal.gif" alt=":-|" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/whistling.gif" alt=":-*" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/redface.gif" alt=":oops:" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/sad.gif" alt=":sad:" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/cry.gif" alt=":cry:" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/surprised.gif" alt=":o" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/confused.gif" alt=":-?" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/sick.gif" alt=":-x" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shocked.gif" alt=":eek:" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/sleeping.gif" alt=":zzz" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/tongue.gif" alt=":P" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/rolleyes.gif" alt=":roll:" class="smile"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/unsure.gif" alt=":sigh:" class="smile"></div><textarea id="comments-form-comment" name="comment" cols="65" rows="8" tabindex="5"></textarea><div class="grippie"><span class="counter">Осталось: <span>1000</span>  символов</span></div>
+</p>
+<p>
+	<input class="checkbox" id="comments-form-subscribe" type="checkbox" name="subscribe" value="1" tabindex="5">
+	<label for="comments-form-subscribe">Подписаться на уведомления о новых комментариях</label><br>
+</p>
+<p>
+	<img class="captcha" onclick="jcomments.clear(&#39;captcha&#39;);" id="comments-form-captcha-image" name="captcha-image" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/index.php" width="121" height="60" alt="Защитный код"><br>
+	<span class="captcha" onclick="jcomments.clear(&#39;captcha&#39;);">Обновить</span><br>
+	<input class="captcha" id="comments-form-captcha" type="text" name="captcha-refid" value="" size="5" tabindex="6"><br>
+</p>
+<div id="comments-form-buttons">
+	<div class="btn" id="comments-form-send"><div><a href="http://microsin.net/programming/pc/ftdi-devices-access-from-csharp.html#" tabindex="7" onclick="jcomments.saveComment();return false;" title="Отправить (Ctrl+Enter)">Отправить</a></div></div>
+	<div class="btn" id="comments-form-cancel" style="display:none;"><div><a href="http://microsin.net/programming/pc/ftdi-devices-access-from-csharp.html#" tabindex="8" onclick="return false;" title="Отменить">Отменить</a></div></div>
+	<div style="clear:both;"></div>
+</div>
+	<input type="hidden" name="object_id" value="1836">
+	<input type="hidden" name="object_group" value="com_content">
+</form>
+<script type="text/javascript">
+<!--
+function JCommentsInitializeForm()
+{
+	var jcEditor = new JCommentsEditor('comments-form-comment', true);
+	jcEditor.initSmiles('http://microsin.net/components/com_jcomments/images/smiles');
+	jcEditor.addSmile(':D','laugh.gif');
+	jcEditor.addSmile(':lol:','lol.gif');
+	jcEditor.addSmile(':-)','smile.gif');
+	jcEditor.addSmile(';-)','wink.gif');
+	jcEditor.addSmile('8)','cool.gif');
+	jcEditor.addSmile(':-|','normal.gif');
+	jcEditor.addSmile(':-*','whistling.gif');
+	jcEditor.addSmile(':oops:','redface.gif');
+	jcEditor.addSmile(':sad:','sad.gif');
+	jcEditor.addSmile(':cry:','cry.gif');
+	jcEditor.addSmile(':o','surprised.gif');
+	jcEditor.addSmile(':-?','confused.gif');
+	jcEditor.addSmile(':-x','sick.gif');
+	jcEditor.addSmile(':eek:','shocked.gif');
+	jcEditor.addSmile(':zzz','sleeping.gif');
+	jcEditor.addSmile(':P','tongue.gif');
+	jcEditor.addSmile(':roll:','rolleyes.gif');
+	jcEditor.addSmile(':sigh:','unsure.gif');
+	jcEditor.addCounter(1000, 'Осталось:', ' символов', 'counter');
+	jcomments.setForm(new JCommentsForm('comments-form', jcEditor));
+}
+
+if (window.addEventListener) {window.addEventListener('load',JCommentsInitializeForm,false);}
+else if (document.addEventListener){document.addEventListener('load',JCommentsInitializeForm,false);}
+else if (window.attachEvent){window.attachEvent('onload',JCommentsInitializeForm);}
+else {if (typeof window.onload=='function'){var oldload=window.onload;window.onload=function(){oldload();JCommentsInitializeForm();}} else window.onload=JCommentsInitializeForm;} 
+//-->
+</script>
+<div id="comments-footer" align="center"><a href="http://www.joomlatune.ru/" title="JComments" target="_blank">JComments</a></div>
+</div></div>
+              </td>
+              <!-- RIGHT Modules -->
+              
+            </tr>
+          </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+      </td>
+      <td valign="top" background="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_right.gif">
+      <img border="0" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_top_right.gif" width="11" height="17"></td>
+    </tr>
+    <tr>
+      <td><img border="0" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_bottom_left.gif" width="11" height="19"></td>
+      <td width="100%" background="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_bottom.gif">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td>
+          <img border="0" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_bottom_inner_left.gif" width="19" height="19"></td>
+          <td align="left"><a href="http://microsin.net/programming/pc/ftdi-devices-access-from-csharp.html#top"><img src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/top_of_page.gif" vspace="5" border="0" alt="Top of Page"></a></td>
+          <td align="right" width="100%"><!--���������������� ��� ���������� ������ "File does not exist:
+           /home/microsig/public_html/images/poweredbyLong.gif"<img src="/images/poweredbyLong.gif" width="169" height="8" vspace="5" border="0" alt="Powered by Mambo Open Source">--></td>
+          <td>
+          <img border="0" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_bottom_inner_right.gif" width="19" height="19"></td>
+        </tr>
+      </tbody></table>
+      </td>
+      <td>
+      <img border="0" src="./Доступ к устройствам FTDI из C# _ pc _ programming_files/shad_bottom_right.gif" width="11" height="19"></td>
+    </tr>
+  </tbody></table>
+  <table align="center" border="0" cellpadding="3" cellspacing="0" width="780">
+    <tbody><tr>
+      <td align="center">
+      
+                      </td>
+    </tr>
+  </tbody></table>
+
+
+
+<div id="MistWindow" style="position: absolute; display: none; width: 375px; height: 380px; top: 50px; left: 50px; z-index: 999;"></div><ul class="autocompleter-choices" style="z-index: 1000; visibility: hidden; zoom: 1; opacity: 0;"></ul><div id="SL_balloon_obj" alt="0" style="display: block;"><div id="SL_button" class="ImTranslatorLogo" style="display: none; left: 764px; top: 5300px; background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/imtranslator-s.png&quot;);"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator"><div id="SL_planshet" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bg2.png&quot;) rgb(244, 245, 245);"><div id="SL_providers"><div class="SL_BL_LABLE_ON" title="Google" id="SL_P0">G</div><div class="SL_BL_LABLE_ON" title="Microsoft" id="SL_P1">M</div><div class="SL_BL_LABLE_ON" title="Translator" id="SL_P2">T</div></div><div id="SL_TB"><div id="bubblelogo" class="ImTranslatorLogo" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/imtranslator-s.png&quot;);"></div><table id="SL_tables" cellspacing="1"><tr><td class="SL_td" width="10%" align="right"><input id="SLloc" type="checkbox" title="Зафиксировать язык"></td><td class="SL_td" width="20%" align="left"><select id="SL_lng_from"><option value="auto">Определить язык</option><option value="az">Азербайджанский</option><option value="sq">Албанский</option><option value="en">Английский</option><option value="ar">Арабский</option><option value="hy">Армянский</option><option value="af">Африкаанс</option><option value="eu">Баскский</option><option value="be">Белорусский</option><option value="bn">Бенгальский</option><option value="my">Бирманский</option><option value="bg">Болгарский</option><option value="bs">Боснийский</option><option value="cy">Валлийский</option><option value="hu">Венгерский</option><option value="vi">Вьетнамский</option><option value="gl">Галисийский</option><option value="el">Греческий</option><option value="ka">Грузинский</option><option value="gu">Гуджарати</option><option value="da">Датский</option><option value="zu">Зулу</option><option value="iw">Иврит</option><option value="ig">Игбо</option><option value="yi">Идиш</option><option value="id">Индонезийский</option><option value="ga">Ирландский</option><option value="is">Исландский</option><option value="es">Испанский</option><option value="it">Итальянский</option><option value="yo">Йоруба</option><option value="kk">Казахский</option><option value="kn">Каннада</option><option value="ca">Каталанский</option><option value="zh-CN">Китайский (Трад)</option><option value="zh-TW">Китайский (Упр)</option><option value="ko">Корейский</option><option value="ht">Креольский (Гаити)</option><option value="km">Кхмерский</option><option value="lo">Лаосский</option><option value="la">Латинский</option><option value="lv">Латышский</option><option value="lt">Литовский</option><option value="mk">Македонский</option><option value="mg">Малагасийский</option><option value="ms">Малайский</option><option value="ml">Малайялам</option><option value="mt">Мальтийский</option><option value="mi">Маори</option><option value="mr">Маратхи</option><option value="mn">Монгольский</option><option value="de">Немецкий</option><option value="ne">Непали</option><option value="nl">Нидерландский</option><option value="no">Норвежский</option><option value="pa">Панджаби</option><option value="fa">Персидский</option><option value="pl">Польский</option><option value="pt">Португальский</option><option value="ro">Румынский</option><option value="ru">Русский</option><option value="ceb">Себуанский</option><option value="sr">Сербский</option><option value="st">Сесото</option><option value="si">Сингальский</option><option value="sk">Словацкий</option><option value="sl">Словенский</option><option value="so">Сомали</option><option value="sw">Суахили</option><option value="su">Суданский</option><option value="tl">Тагальский</option><option value="tg">Таджикский</option><option value="th">Тайский</option><option value="ta">Тамильский</option><option value="te">Телугу</option><option value="tr">Турецкий</option><option value="uz">Узбекский</option><option value="uk">Украинский</option><option value="ur">Урду</option><option value="fi">Финский</option><option value="fr">Французский</option><option value="ha">Хауса</option><option value="hi">Хинди</option><option value="hmn">Хмонг</option><option value="hr">Хорватский</option><option value="ny">Чева</option><option value="cs">Чешский</option><option value="sv">Шведский</option><option value="eo">Эсперанто</option><option value="et">Эстонский</option><option value="jw">Яванский</option><option value="ja">Японский</option></select></td><td class="SL_td" width="3" align="center"><div id="SL_switch_b" title="Перевернуть языки" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/switchb.png&quot;);"></div></td><td class="SL_td" width="20%" align="left"><select id="SL_lng_to"><option value="az">Азербайджанский</option><option value="sq">Албанский</option><option value="en">Английский</option><option value="ar">Арабский</option><option value="hy">Армянский</option><option value="af">Африкаанс</option><option value="eu">Баскский</option><option value="be">Белорусский</option><option value="bn">Бенгальский</option><option value="my">Бирманский</option><option value="bg">Болгарский</option><option value="bs">Боснийский</option><option value="cy">Валлийский</option><option value="hu">Венгерский</option><option value="vi">Вьетнамский</option><option value="gl">Галисийский</option><option value="el">Греческий</option><option value="ka">Грузинский</option><option value="gu">Гуджарати</option><option value="da">Датский</option><option value="zu">Зулу</option><option value="iw">Иврит</option><option value="ig">Игбо</option><option value="yi">Идиш</option><option value="id">Индонезийский</option><option value="ga">Ирландский</option><option value="is">Исландский</option><option selected="selected" value="es">Испанский</option><option value="it">Итальянский</option><option value="yo">Йоруба</option><option value="kk">Казахский</option><option value="kn">Каннада</option><option value="ca">Каталанский</option><option value="zh-CN">Китайский (Трад)</option><option value="zh-TW">Китайский (Упр)</option><option value="ko">Корейский</option><option value="ht">Креольский (Гаити)</option><option value="km">Кхмерский</option><option value="lo">Лаосский</option><option value="la">Латинский</option><option value="lv">Латышский</option><option value="lt">Литовский</option><option value="mk">Македонский</option><option value="mg">Малагасийский</option><option value="ms">Малайский</option><option value="ml">Малайялам</option><option value="mt">Мальтийский</option><option value="mi">Маори</option><option value="mr">Маратхи</option><option value="mn">Монгольский</option><option value="de">Немецкий</option><option value="ne">Непали</option><option value="nl">Нидерландский</option><option value="no">Норвежский</option><option value="pa">Панджаби</option><option value="fa">Персидский</option><option value="pl">Польский</option><option value="pt">Португальский</option><option value="ro">Румынский</option><option value="ru">Русский</option><option value="ceb">Себуанский</option><option value="sr">Сербский</option><option value="st">Сесото</option><option value="si">Сингальский</option><option value="sk">Словацкий</option><option value="sl">Словенский</option><option value="so">Сомали</option><option value="sw">Суахили</option><option value="su">Суданский</option><option value="tl">Тагальский</option><option value="tg">Таджикский</option><option value="th">Тайский</option><option value="ta">Тамильский</option><option value="te">Телугу</option><option value="tr">Турецкий</option><option value="uz">Узбекский</option><option value="uk">Украинский</option><option value="ur">Урду</option><option value="fi">Финский</option><option value="fr">Французский</option><option value="ha">Хауса</option><option value="hi">Хинди</option><option value="hmn">Хмонг</option><option value="hr">Хорватский</option><option value="ny">Чева</option><option value="cs">Чешский</option><option value="sv">Шведский</option><option value="eo">Эсперанто</option><option value="et">Эстонский</option><option value="jw">Яванский</option><option value="ja">Японский</option></select></td><td class="SL_td" width="5%" align="center"> </td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title="Прослушать" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/tts-voice.png&quot;);"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_copy" title="Скопировать" class="SL_copy" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/copy_hand.png&quot;);"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_bbl_font_patch" onclick="alert(chrome.i18n.getMessage(&#39;extNot_available&#39;))"></div><div id="SL_bbl_font" title="Размер шрифта" class="SL_bbl_font" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/font-off.png&quot;);"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_TH" title="История переводов" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/history.png&quot;);"></div></td><td class="SL_td" width="18%"></td><td class="SL_td" width="8%" align="right"><div id="SL_pin" title="Закрепить всплывающее окно" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/pin-on.png&quot;);"></div></td></tr></table></div></div><div id="SL_shadow_translation_result" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bg.png&quot;) rgb(255, 255, 255);"></div><div id="SL_player2"></div><div id="SL_alert100" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bg2.png&quot;);">Звуковая функция ограничена 100 символами</div><div id="SL_bbl_donate" title="Сделать пожертвование" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/donate2.png&quot;);"></div><div id="SL_Balloon_options" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bg3.png&quot;) rgb(255, 255, 255);"><a href="chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/html/options/options-bbl.html" target="_blank" class="SL_options" title="Показать настройки">Настройки</a> : <a href="chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/html/options/history.html" target="_blank" class="SL_options" title="История переводов">История</a> : <a href="http://about.imtranslator.net/tutorials/presentations/imtranslator-for-chrome/chrome-bubble-translator/" target="_blank" class="SL_options" title="Справка ImTranslator">Справка</a> : <a href="chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/html/options/feedback.html" target="_blank" class="SL_options" title="Обратная связь">Обратная связь</a><span id="SL_Balloon_Close" title="Закрыть">Закрыть</span></div></div></div></body></html>

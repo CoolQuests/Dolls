@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ControlLibrary.DoorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controlLibrary="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="50" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="200"><!-- d:DataContext="{d:DesignInstance controlLibrary:DoorModel}"-->
+        <Canvas Height="200" Width="50">
+            <Rectangle Height="200" Width="20" RadiusX="5" RadiusY="5" Canvas.Right="0"
+                       Style="{StaticResource DoorStyle}">
+            </Rectangle>
+            <Polygon Canvas.Right="20" Canvas.Bottom="30" Style="{StaticResource PolygonHandStyle}">
+                <Polygon.Points>
+                    <Point X="0" Y="0"/>
+                    <Point X="5" Y="5"/>
+                    <Point X="5" Y="13"/>
+                    <Point X="10" Y="13"/>
+                    <Point X="10" Y="17"/>
+                    <Point X="5" Y="17"/>
+                    <Point X="5" Y="20"/>
+                    <Point X="0" Y="20"/>
+                </Polygon.Points>
+            </Polygon>
+            <!--
+            <Rectangle Canvas.Right="20" Canvas.Bottom="30" Height="10" Width="5"
+                       Style="{StaticResource RectangleHandStyle}"/>
+            <Rectangle Canvas.Right="25" Canvas.Bottom="30" Height="20" Width="5"
+                       Style="{StaticResource RectangleHandStyle}"/>
+            <Ellipse Canvas.Right="5" Canvas.Top="0" Height="10" Width="10" Fill="White"/>-->
+        </Canvas>
+    </Viewbox>
+</UserControl>
